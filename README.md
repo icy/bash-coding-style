@@ -153,7 +153,17 @@ learn them; don't criticize.
 
 1. (2015)
     `Steam` removes everything on system:
-    https://github.com/ValveSoftware/steam-for-linux/issues/3671
+      https://github.com/ValveSoftware/steam-for-linux/issues/3671
 2. (2012)
     `boxbackup` kills a France company:
-    http://dragula.viettug.org/blogs/675.html
+      http://dragula.viettug.org/blogs/675.html
+3. (2012)
+    `n`, a node version manager, removes system directories:
+      https://github.com/tj/n/issues/86 .
+    There are a lot of funny `.gif`s in this `github` issue.
+    The code that causes the bug is here
+      https://github.com/tj/n/blob/17209227b7d06696e829a944343976127db01369/bin/n#L6.
+4. (2011)
+    A space that removes everything under `/usr/`:
+      https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac.
+    See also https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/issues/123
