@@ -15,10 +15,8 @@
 
 A Bash coding style.
 
-The Vietnamese version can be found here
-  http://theslinux.org/doc/bash/coding_style/
-
-The English version is coming.
+The original Vietnamese version can be found here
+  http://theslinux.org/doc/bash/coding_style/.
 
 ## Author. License
 
