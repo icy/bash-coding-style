@@ -121,7 +121,7 @@ the pipe. Be sure you catch it up!
 When this `_ret_pipe` array contain something other than zero, you must
 check if some pipe component has failed.
 
-## Automatically error handling
+## Automatic error handling
 
 Always use `set -u` to make sure you won't use any undeclared variable.
 This saves you from a lot of headache and critical bugs.
