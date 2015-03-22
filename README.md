@@ -108,3 +108,39 @@ That's not a good idea. Use the following code instead
     _my_def() {
       _foobar_call || return 1
     }
+
+## Pipe error handling
+
+Pipe stores its components's return codes in the `PIPESTATUS` error.
+This variable can be only used in **ONE** sub-`{shell,process}` followed
+the pipe. Be sure you catch it up!
+
+    echo test | fail_command | something_else
+    local _ret_pipe=( ${PIPESTATUS[@]} )
+
+When this `_ret_pipe` array contain something other than zero, you must
+check if some pipe component has failed.
+
+## Automatically error handling
+
+Always use `set -u` to make sure you won't use any undeclared variable.
+This saves you from a lot of headache and critical bugs.
+
+Because `set -u` can't help when a variable is declared and set to empty
+value, don't trust it twice.
+
+Use `set -e` if your script is being used for your own business.
+Be careful when shipping `set -e` script to the world.
+Because it simply breaks a lot of third parties.
+And sometimes you shoot on your own feet.
+Let's see
+
+    set -e
+    _do_some_critical_check
+
+    if [[ $? -ge 1 ]]; then
+      echo "Oh, you will never see this line"
+    fi
+
+If `_do_some_critical_check` fails, the script just exits and the following
+code is just skipped without any notice. Too bad, right?
