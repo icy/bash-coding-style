@@ -9,7 +9,7 @@
 * [Error handling](#error-handling)
 * [Pipe error handling](#pipe-error-handling)
 * [Automatic error handling](#automatic-error-handling)
-* [Good lessions](#good-lessions)
+* [Good lessons](#good-lessons)
 
 ## Description
 
@@ -157,10 +157,10 @@ Let's see
 If `_do_some_critical_check` fails, the script just exits and the following
 code is just skipped without any notice. Too bad, right?
 
-## Good lessions
+## Good lessons
 
 Some bad #bash error can kill a whole system. Here are some examples,
-as food for your future vulnerabilies. They are good lessions, so please
+as food for your future vulnerabilies. They are good lessons, so please
 learn them; don't criticize.
 
 1. (2015)
