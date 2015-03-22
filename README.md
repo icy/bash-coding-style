@@ -149,7 +149,7 @@ code is just skipped without any notice. Too bad, right?
 
 Some bad #bash error can kill a whole system. Here are some examples,
 as food for your future vulnerabilies. They are good lessions, so please
-learn it; don't criticize.
+learn them; don't criticize.
 
 1. (2015)
     `Steam` removes everything on system:
