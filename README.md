@@ -47,8 +47,8 @@ Example
       | grep /bar/ \
       | awk '{print $NF}')"
 
-When using `display` pipe, put pipe symbol (`|`) at the begining of
-of pipe component. Never put `|` at the end of a line.
+When using `display` form, put pipe symbol (`|`) at the beginning of
+of its statement. Never put `|` at the end of a line.
 
 ## Variable names
 
@@ -81,7 +81,7 @@ make your code unreadable. Put each `local` statement on its own line.
 
 ## Function names
 
-Name of internal functions should be started with an underscore.
+Name of internal functions should be started by an underscore (`_`).
 Use underscore (`_`) to glue verbs and nouns. Don't use camel form
 (`ThisIsBad`; use `this_is_not_bad` instead.)
 
@@ -89,7 +89,16 @@ Use underscore (`_`) to glue verbs and nouns. Don't use camel form
 
 All errors should be sent to `STDERR`. Never send any error/warning message
 to a`STDOUT` device. Never use `echo` directly to print your message;
-use a wrapper instead (`warn`, `err`, `die`,...)
+use a wrapper instead (`warn`, `err`, `die`,...). For example,
+
+    _warn() {
+      echo >&2 ":: $*"
+    }
+
+    _die() {
+      echo >&2 ":: $*"
+      exit 1
+    }
 
 Do not handle error of another function. Each function should handle
 error and/or error message by their own implement, inside its own
@@ -109,6 +118,7 @@ In the above example, `_my_def` is trying to handle error for `_foobar_call`.
 That's not a good idea. Use the following code instead
 
     _foobar_call() {
+      # do something
 
       if [[ $? -ge 1 ]]; then
         _error "$FUNCNAME has some internal error"
@@ -121,17 +131,20 @@ That's not a good idea. Use the following code instead
 
 ## Pipe error handling
 
-Pipe stores its components's return codes in the `PIPESTATUS` error.
-This variable can be only used in **ONE** sub-`{shell,process}` followed
-the pipe. Be sure you catch it up!
+Pipe stores its components's return codes in the `PIPESTATUS` array.
+This variable can be used only *ONCE* in the sub-`{shell,process}`
+followed the pipe. Be sure you catch it up!
 
     echo test | fail_command | something_else
     local _ret_pipe=( ${PIPESTATUS[@]} )
+    # from here, `PIPESTATUS` is not availabe anymore
 
-When this `_ret_pipe` array contain something other than zero, you must
+When this `_ret_pipe` array contains something other than zero, you must
 check if some pipe component has failed.
 
 ## Automatic error handling
+
+### Set -u
 
 Always use `set -u` to make sure you won't use any undeclared variable.
 This saves you from a lot of headache and critical bugs.
@@ -139,10 +152,13 @@ This saves you from a lot of headache and critical bugs.
 Because `set -u` can't help when a variable is declared and set to empty
 value, don't trust it twice.
 
+### Set -e
+
 Use `set -e` if your script is being used for your own business.
-Be careful when shipping `set -e` script to the world.
-Because it simply breaks a lot of third parties.
-And sometimes you shoot on your own feet.
+
+Be careful when shipping `set -e` script to the world. It can simply
+break a lot of games. And sometimes you will shoot yourself in your foot.
+
 Let's see
 
     set -e
