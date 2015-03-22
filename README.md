@@ -69,7 +69,7 @@ Name of internal functions should be started with an underscore.
 Use underscore (`_`) to glue verbs and nouns. Don't use camel form
 (`ThisIsBad`; use `this_is_not_bad` instead.)
 
-# Error handling
+## Error handling
 
 All errors should be sent to `STDERR`. Never send any error/warning message
 to a`STDOUT` device. Never use `echo` directly to print your message;
