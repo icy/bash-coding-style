@@ -144,3 +144,16 @@ Let's see
 
 If `_do_some_critical_check` fails, the script just exits and the following
 code is just skipped without any notice. Too bad, right?
+
+## Good lessions
+
+Some bad #bash error can kill a whole system. Here are some examples,
+as food for your future vulnerabilies. They are good lessions, so please
+learn it; don't criticize.
+
+1. (2015)
+    `Steam` removes everything on system:
+    https://github.com/ValveSoftware/steam-for-linux/issues/3671
+2. (2012)
+    `boxbackup` kills a France company:
+    http://dragula.viettug.org/blogs/675.html
