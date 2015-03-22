@@ -8,6 +8,12 @@ The Vietnamese version can be found here
 
 The English version is coming.
 
+## Author. License
+
+The author is Anh K. Huynh.
+
+The work is released under a MIT license.
+
 ## Tabs and Spaces
 
 Never use `(smart-)`tabs. Replace a tab by two spaces.
