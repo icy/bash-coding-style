@@ -174,7 +174,7 @@ learn them; don't criticize.
       https://github.com/tj/n/issues/86 .
     There are a lot of funny `.gif`s in this `github` issue.
     The code that causes the bug is here
-      https://github.com/tj/n/blob/17209227b7d06696e829a944343976127db01369/bin/n#L6.
+      https://github.com/tj/n/pull/85/files.
 4. (2011)
     A space that removes everything under `/usr/`:
       https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac.
