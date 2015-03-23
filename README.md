@@ -137,7 +137,7 @@ followed the pipe. Be sure you catch it up!
 
     echo test | fail_command | something_else
     local _ret_pipe=( ${PIPESTATUS[@]} )
-    # from here, `PIPESTATUS` is not availabe anymore
+    # from here, `PIPESTATUS` is not available anymore
 
 When this `_ret_pipe` array contains something other than zero, you must
 check if some pipe component has failed.
