@@ -13,10 +13,11 @@
 
 ## Description
 
-A Bash coding style.
+This is a set of `Bash` coding conventions and good pratices.
 
 The original Vietnamese version can be found here
   http://theslinux.org/doc/bash/coding_style/.
+It is not up-to-date, though.
 
 ## Author. License
 
