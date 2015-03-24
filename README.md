@@ -198,19 +198,26 @@ Some bad #bash error can kill a whole system. Here are some examples,
 as food for your future vulnerabilities. They are good lessons, so please
 learn them; don't criticize.
 
-1. (2015)
+5. (2015)
+    Restarting `squid-3.1` removes all system files:
+      https://bugzilla.redhat.com/show_bug.cgi?id=1202858.
+    See also
+      https://github.com/mozilla-services/squid-rpm/blob/ea9a11c15092788f270730e0264f01ab5503a82e/SOURCES/squid.init#L138
+    and discussion on Hacker News:
+      https://news.ycombinator.com/item?id=9254876.
+4. (2015)
     `Steam` removes everything on system:
       https://github.com/ValveSoftware/steam-for-linux/issues/3671
-2. (2012)
+3. (2012)
     `boxbackup` kills a France company:
       http://dragula.viettug.org/blogs/675.html
-3. (2012)
+2. (2012)
     `n`, a node version manager, removes system directories:
       https://github.com/tj/n/issues/86 .
     There are a lot of funny `.gif`s in this `github` issue.
     The code that causes the bug is here
       https://github.com/tj/n/pull/85/files.
-4. (2011)
+1. (2011)
     A space that removes everything under `/usr/`:
       https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac.
     See also https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/issues/123
