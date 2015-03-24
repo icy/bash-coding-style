@@ -158,7 +158,7 @@ value, don't trust it twice.
 Use `set -e` if your script is being used for your own business.
 
 Be careful when shipping `set -e` script to the world. It can simply
-break a lot of games. And sometimes you will shoot yourself in your foot.
+break a lot of games. And sometimes you will shoot yourself in the foot.
 
 Let's see
 
