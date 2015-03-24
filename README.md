@@ -148,7 +148,7 @@ check if some pipe component has failed.
 ### Set -u
 
 Always use `set -u` to make sure you won't use any undeclared variable.
-This saves you from a lot of headache and critical bugs.
+This saves you from a lot of headaches and critical bugs.
 
 Because `set -u` can't help when a variable is declared and set to empty
 value, don't trust it twice.
