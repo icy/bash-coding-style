@@ -208,9 +208,6 @@ learn them; don't criticize.
 4. (2015)
     `Steam` removes everything on system:
       https://github.com/ValveSoftware/steam-for-linux/issues/3671
-6. (2014)
-    Restarting `squid` on a `RHEL` system removes all system files:
-      https://bugzilla.redhat.com/show_bug.cgi?id=1102343
 3. (2012)
     `boxbackup` kills a France company:
       http://dragula.viettug.org/blogs/675.html
