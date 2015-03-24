@@ -186,7 +186,7 @@ save the variable to a local variable. For example,
 
     _do_something_terrible
     echo "done"
-    if [[ $? -ge 1]]; then
+    if [[ $? -ge 1 ]]; then
       # Bash will never reach here. Because "echo" has returned zero.
     fi
 
