@@ -9,6 +9,7 @@
 * [Error handling](#error-handling)
 * [Pipe error handling](#pipe-error-handling)
 * [Automatic error handling](#automatic-error-handling)
+* [Catch up with $?](#catch-up-with-)
 * [Good lessons](#good-lessons)
 
 ## Description
@@ -175,6 +176,21 @@ code is just skipped without any notice. Too bad, right?
 ## Catch up with $?
 
 `$?` is used to get the return code of the *last statement*.
+To use it, please make sure you are not too late. The best way is to
+save the variable to a local variable. For example,
+
+    _do_something_critical
+    local _ret="$?"
+    # from now, $? is zero, because the latest statement (assigment)
+    # (always) returns zero.
+
+    _do_something_terrible
+    echo "done"
+    if [[ $? -ge 1]]; then
+      # Bash will never reach here. Because "echo" has returned zero.
+    fi
+
+`$?` is very useful. But don't trust it.
 
 ## Good lessons
 
