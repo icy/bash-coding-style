@@ -199,7 +199,7 @@ as food for your future vulnerabilities. They are good lessons, so please
 learn them; don't criticize.
 
 5. (2015)
-    Restarting `squid-3.1` removes all system files:
+    Restarting `squid-3.1` on a `RHEL` system removes all system files:
       https://bugzilla.redhat.com/show_bug.cgi?id=1202858.
     See also
       https://github.com/mozilla-services/squid-rpm/blob/ea9a11c15092788f270730e0264f01ab5503a82e/SOURCES/squid.init#L138
