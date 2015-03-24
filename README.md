@@ -181,7 +181,7 @@ save the variable to a local variable. For example,
 
     _do_something_critical
     local _ret="$?"
-    # from now, $? is zero, because the latest statement (assigment)
+    # from now, $? is zero, because the latest statement (assignment)
     # (always) returns zero.
 
     _do_something_terrible
