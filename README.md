@@ -172,10 +172,14 @@ Let's see
 If `_do_some_critical_check` fails, the script just exits and the following
 code is just skipped without any notice. Too bad, right?
 
+## Catch up with $?
+
+`$?` is used to get the return code of the *last statement*.
+
 ## Good lessons
 
 Some bad #bash error can kill a whole system. Here are some examples,
-as food for your future vulnerabilies. They are good lessons, so please
+as food for your future vulnerabilities. They are good lessons, so please
 learn them; don't criticize.
 
 1. (2015)
