@@ -198,12 +198,10 @@ Some bad #bash error can kill a whole system. Here are some examples,
 as food for your future vulnerabilities. They are good lessons, so please
 learn them; don't criticize.
 
-5. (2015)
+5. (2015, _candidate_)
     Restarting `squid-3.1` on a `RHEL` system removes all system files:
       https://bugzilla.redhat.com/show_bug.cgi?id=1202858
-    See also
-      https://github.com/mozilla-services/squid-rpm/blob/ea9a11c15092788f270730e0264f01ab5503a82e/SOURCES/squid.init#L138
-    and discussion on Hacker News:
+    See discussion on Hacker News:
       https://news.ycombinator.com/item?id=9254876.
 4. (2015)
     `Steam` removes everything on system:
