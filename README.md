@@ -207,7 +207,7 @@ learn them; don't criticize.
     `Steam` removes everything on system:
       https://github.com/ValveSoftware/steam-for-linux/issues/3671
 3. (2012)
-    `boxbackup` kills a France company:
+    `boxbackup` kills a Frence company:
       http://dragula.viettug.org/blogs/675.html
 2. (2012)
     `n`, a node version manager, removes system directories:
