@@ -221,3 +221,6 @@ learn them; don't criticize.
     A space that removes everything under `/usr/`:
       https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac.
     See also https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/issues/123
+7. (2001):
+    iTunes 2.0 Installer Deletes Hard Drives:
+      http://apple.slashdot.org/story/01/11/04/0412209/itunes-20-installer-deletes-hard-drives
