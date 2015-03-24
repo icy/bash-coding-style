@@ -9,7 +9,7 @@
 * [Error handling](#error-handling)
 * [Pipe error handling](#pipe-error-handling)
 * [Automatic error handling](#automatic-error-handling)
-* [Catch up with $?](#catch-up-with-)
+* [Catch up to $?](#catch-up-to-)
 * [Good lessons](#good-lessons)
 
 ## Description
@@ -173,7 +173,7 @@ Let's see
 If `_do_some_critical_check` fails, the script just exits and the following
 code is just skipped without any notice. Too bad, right?
 
-## Catch up with $?
+## Catch up to $?
 
 `$?` is used to get the return code of the *last statement*.
 To use it, please make sure you are not too late. The best way is to
