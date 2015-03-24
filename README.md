@@ -102,7 +102,7 @@ use a wrapper instead (`warn`, `err`, `die`,...). For example,
     }
 
 Do not handle error of another function. Each function should handle
-error and/or error message by their own implement, inside its own
+error and/or error message by their own implementation, inside its own
 definition.
 
     _my_def() {
