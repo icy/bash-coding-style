@@ -235,7 +235,7 @@ learn them; don't criticize.
     successfully. In 2012, a French company lost all their database backups,
     and that took down their internal tools in 1 month.
 
-    You can see the line `173` from the files `examples/backup-manager_backup_methods.sh`
+    You can see the line `189` from the files `examples/backup-manager_backup_methods.sh`
     for details. This file is shipped with `backup-manager` version `0.7.10.1-2`
     on `Ubuntu 14.04-LTS`.
 2. (2012)
