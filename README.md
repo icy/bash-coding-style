@@ -227,8 +227,17 @@ learn them; don't criticize.
     `Steam` removes everything on system:
       https://github.com/ValveSoftware/steam-for-linux/issues/3671
 3. (2012)
-    `boxbackup` kills a Frence company:
-      http://dragula.viettug.org/blogs/675.html
+    `Backup Manager` kills a French company:
+      http://dragula.viettug.org/blogs/675.html.
+
+    This tool uses `$?` to check if an internal backup script fails.
+    Unfortunately, `$?` is used too late; hence the program always returns
+    successfully. In 2012, a French company lost all their database backups,
+    and that took down their internal tools in 1 month.
+
+    You can see the line `173` from the files `examples/backup-manager_backup_methods.sh`
+    for details. This file is shipped with `backup-manager` version `0.7.10.1-2`
+    on `Ubuntu 14.04-LTS`.
 2. (2012)
     `n`, a node version manager, removes system directories:
       https://github.com/tj/n/issues/86 .
