@@ -215,62 +215,71 @@ Some bad #bash error can kill a whole system. Here are some examples,
 as food for your future vulnerabilities. They are good lessons, so please
 learn them; don't criticize.
 
-5. (2015)
-    Restarting `squid-3.1` on a `RHEL` system removes all system files:
-      https://bugzilla.redhat.com/show_bug.cgi?id=1202858.
+### 2015: Restarting `squid-3.1` on a `RHEL` system removes all system files
 
-    See discussion on Hacker News:
-      https://news.ycombinator.com/item?id=9254876.
+Reference:  https://bugzilla.redhat.com/show_bug.cgi?id=1202858.
 
-    *Please note* that this is a bug catched by `QA` team, before
-    the package is released; that's a luck catch.
-    `RedHat` team should have fixed their `#bash` coding style.
-4. (2015)
-    `Steam` removes everything on system:
-      https://github.com/ValveSoftware/steam-for-linux/issues/3671.
+See discussion on Hacker News:
+  https://news.ycombinator.com/item?id=9254876.
 
-    The problem was introduced in the following commit:
-      https://github.com/indrora/steam_latest/blob/21cc14158c171f5912b04b83abf41205eb804b31/scripts/steam.sh#L359
-    (a copy of this script can be found at `examples/steam.sh`.)
+*Please note* that this is a bug catched by `QA` team, before
+the package is released; that's a luck catch.
+`RedHat` team should have fixed their `#bash` coding style.
 
-    If the `steam.sh` script is invoked with `--reset` option, for example,
-    when there isn't directory `~/.steam/`, will invoke the internal function
-    `reset_steam`, in which a `remove-all` command is instructed
+### 2015: `Steam` removes everything on system
 
-        STEAMROOT="$(cd "${0%/*}" && echo $PWD)"
-        # ...
+Reference: https://github.com/ValveSoftware/steam-for-linux/issues/3671.
 
-        reset_steam() {
-          # ...
-          rm -rf "$STEAMROOT/"*
-          # ...
-        }
+The problem was introduced in the following commit:
+  https://github.com/indrora/steam_latest/blob/21cc14158c171f5912b04b83abf41205eb804b31/scripts/steam.sh#L359
+(a copy of this script can be found at `examples/steam.sh`.)
 
-    The bad thing happens when `$STEAMROOT` is `/` (when you have `/steam.sh`)
-    or just empty (when you execute `bash steam.sh`, `$0` is `steam.sh` and
-    the `cd` command just fails, results in an empty `$STEAMROOT`.)
-3. (2012)
-    `Backup Manager` kills a French company:
-      http://dragula.viettug.org/blogs/675.html.
+If the `steam.sh` script is invoked with `--reset` option, for example,
+when there isn't directory `~/.steam/`, will invoke the internal function
+`reset_steam`, in which a `remove-all` command is instructed
 
-    This tool uses `$?` to check if an internal backup script fails.
-    Unfortunately, `$?` is used too late; hence the program always returns
-    successfully. In 2012, a French company lost all their database backups,
-    and that took down their internal tools in 1 month.
+    STEAMROOT="$(cd "${0%/*}" && echo $PWD)"
+    # ...
 
-    You can see the line `189` from the files `examples/backup-manager_backup_methods.sh`
-    for details. This file is shipped with `backup-manager` version `0.7.10.1-2`
-    on `Ubuntu 14.04-LTS`.
-2. (2012)
-    `n`, a node version manager, removes system directories:
-      https://github.com/tj/n/issues/86 .
-    There are a lot of funny `.gif`s in this `github` issue.
-    The code that causes the bug is here
-      https://github.com/tj/n/pull/85/files.
-1. (2011)
-    A space that removes everything under `/usr/`:
-      https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac.
-    See also https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/issues/123
-7. (2001):
-    iTunes 2.0 Installer Deletes Hard Drives:
-      http://apple.slashdot.org/story/01/11/04/0412209/itunes-20-installer-deletes-hard-drives
+    reset_steam() {
+      # ...
+      rm -rf "$STEAMROOT/"*
+      # ...
+    }
+
+The bad thing happens when `$STEAMROOT` is `/` (when you have `/steam.sh`)
+or just empty (when you execute `bash steam.sh`, `$0` is `steam.sh` and
+the `cd` command just fails, results in an empty `$STEAMROOT`.)
+
+### 2012: `Backup Manager` kills a French company
+
+Reference: http://dragula.viettug.org/blogs/675.html.
+
+This tool uses `$?` to check if an internal backup script fails.
+Unfortunately, `$?` is used too late; hence the program always returns
+successfully. In 2012, a French company lost all their database backups,
+and that took down their internal tools in 1 month.
+
+You can see the line `189` from the files `examples/backup-manager_backup_methods.sh`
+for details. This file is shipped with `backup-manager` version `0.7.10.1-2`
+on `Ubuntu 14.04-LTS`.
+
+### 2012: `n`, a node version manager, removes system directories
+
+Reference: https://github.com/tj/n/issues/86 .
+
+There are a lot of funny `.gif`s in this `github` issue.
+The code that causes the bug is here
+  https://github.com/tj/n/pull/85/files.
+
+### 2011: A space that removes everything under `/usr/`
+
+Reference:
+  https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac.
+
+See also https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/issues/123
+
+### 2001: iTunes 2.0 Installer Deletes Hard Drives
+
+Reference:
+  http://apple.slashdot.org/story/01/11/04/0412209/itunes-20-installer-deletes-hard-drives
