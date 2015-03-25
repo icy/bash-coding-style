@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cat 1>&2 <<-EOF
-  This script is not to run any system.
+  This script is not to run on any system.
   Anh K. Huynh as this banner to prevent script from being used.
 
   IThe script is part of the backup-manager 0.7.10.1-2 on Ubuntu 14.04-LTS.
