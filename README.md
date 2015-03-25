@@ -64,7 +64,7 @@ A variable is named according to its scope.
   and the name when the variable is used (e.g, `$_this_is_a_variable`).
   This makes your code more readable, esp. when there isn't color support
   on your source code viewer.
-* Any local variables inside a function definition must be
+* Any local variables inside a function definition should be
   declared with a `local` statement.
 
 Example
@@ -83,7 +83,7 @@ Example
     }
 
 Though `local` statement can declare multiple variables, that way
-make your code unreadable. Put each `local` statement on its own line.
+makes your code unreadable. Put each `local` statement on its own line.
 
 ## Function names
 
@@ -145,8 +145,21 @@ followed the pipe. Be sure you catch it up!
     local _ret_pipe=( ${PIPESTATUS[@]} )
     # from here, `PIPESTATUS` is not available anymore
 
-When this `_ret_pipe` array contains something other than zero, you must
-check if some pipe component has failed.
+When this `_ret_pipe` array contains something other than zero,
+you should check if some pipe component has failed. For example,
+
+    # Note:
+    #   This function only works when it is invoked
+    #   immediately after a pipe statement.
+    _is_good_pipe() {
+      echo "${PIPESTATUS[@]}" | grep -qE "^[0 ]+$"
+    }
+
+    _do_something | _do_something_else | _do_anything
+    _is_good_pipe \
+    || {
+      echo >&2 ":: Unable to do something"
+    }
 
 ## Automatic error handling
 
