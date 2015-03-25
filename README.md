@@ -235,7 +235,7 @@ The problem was introduced in the following commit:
 (a copy of this script can be found at `examples/steam.sh`.)
 
 If the `steam.sh` script is invoked with `--reset` option, for example,
-when there isn't directory `~/.steam/`, will invoke the internal function
+when there isn't `~/.steam/` directory, it will invoke the internal function
 `reset_steam`, in which a `remove-all` command is instructed
 
     STEAMROOT="$(cd "${0%/*}" && echo $PWD)"
