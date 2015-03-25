@@ -59,7 +59,11 @@ A variable is named according to its scope.
 * If a variable can be changed from its parent environment,
   it should be in uppercase; e.g, `THIS_IS_A_USER_VARIABLE`.
 * Other variables are in lowercase, started by an underscore;
-  e.g, `_this_is_a_variable`.
+  e.g, `_this_is_a_variable`. The primary purpose of the underscore (`_`)
+  is to create a natural distance between the dollar (`$`)
+  and the name when the variable is used (e.g, `$_this_is_a_variable`).
+  This makes your code more readable, esp. when there isn't color support
+  on your source code viewer.
 * Any local variables inside a function definition must be
   declared with a `local` statement.
 
