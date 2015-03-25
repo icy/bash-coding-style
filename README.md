@@ -227,7 +227,28 @@ learn them; don't criticize.
     `RedHat` team should have fixed their `#bash` coding style.
 4. (2015)
     `Steam` removes everything on system:
-      https://github.com/ValveSoftware/steam-for-linux/issues/3671
+      https://github.com/ValveSoftware/steam-for-linux/issues/3671.
+
+    The problem was introduced in the following commit:
+      https://github.com/indrora/steam_latest/blob/21cc14158c171f5912b04b83abf41205eb804b31/scripts/steam.sh#L359
+    (a copy of this script can be found at `examples/steam.sh`.)
+
+    If the `steam.sh` script is invoked with `--reset` option, for example,
+    when there isn't directory `~/.steam/`, will invoke the internal function
+    `reset_steam`, in which a `remove-all` command is instructed
+
+        STEAMROOT="$(cd "${0%/*}" && echo $PWD)"
+        # ...
+
+        reset_steam() {
+          # ...
+          rm -rf "$STEAMROOT/"*
+          # ...
+        }
+
+    The bad thing happens when `$STEAMROOT` is `/` (when you have `/steam.sh`)
+    or just empty (when you execute `bash steam.sh`, `$0` is `steam.sh` and
+    the `cd` command just fails, results in an empty `$STEAMROOT`.)
 3. (2012)
     `Backup Manager` kills a French company:
       http://dragula.viettug.org/blogs/675.html.
