@@ -304,9 +304,19 @@ other system files.
 ### 2011: A space that removes everything under `/usr/`
 
 Reference:
-  https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/commit/a047be85247755cdbe0acce6f1dafc8beb84f2ac.
+  https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/commit/6cd6b2485668e8a87485cb34ca8a0a937e73f16d
 
-See also https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/issues/123
+See also https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/issues/123.
+A copy of `install.sh` file is `examples/bumblebee_install.sh`.
+
+The author tries to clean up some directories
+
+    rm -rf /usr /lib/nvidia-current/xorg/xorg
+
+Unfortunately, because he "was very tired that night", he inserted an
+extra space after `/usr`, and every one got bonus: buy one, get two.
+
+This problem may (slightly) be avoided by using quoting, and listing.
 
 ### 2001: iTunes 2.0 Installer Deletes Hard Drives
 
