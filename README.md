@@ -240,7 +240,7 @@ that tries to clean up `squid`'s `PID` directory:
 
 That is similar to this script
   https://github.com/mozilla-services/squid-rpm/blob/47880414f17affdbb634b6f0a19a342995fb60f6/SOURCES/squid.init,
-whose copy is in `examples/squid.init`. Because `RedHat` doesn't publish
+whose copy is in `examples/squid.init.sh`. Because `RedHat` doesn't publish
 their code, we can only _guess_ that they put `SQUID_PIDFILE_DIR` in some
 external configuration file (like `Debian` often uses `/etc/default/`),
 and for some `UNKNOWN` reason, `$SQUID_PIDFILE_DIR` is expanded to `empty`.
