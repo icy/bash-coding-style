@@ -12,10 +12,10 @@
 * [Catch up to $?](#catch-up-to-)
 * [Good lessons](#good-lessons)
 
-  * [2015: squid restarting remove system files](#2015-restarting-squid-31-on-a-rhel-system-removes-all-system-files)
+  * [2015: squid restarting removes system files](#2015-restarting-squid-31-on-a-rhel-system-removes-all-system-files)
   * [2015: steam removes everything](#2015-steam-removes-everything-on-system)
   * [2012: backup-manager kills a French company](#2012-backup-manager-kills-a-french-company)
-  * [2012: a node manager remove system directories](#2012-n-a-node-version-manager-removes-system-directories)
+  * [2012: a node manager removes system directories](#2012-n-a-node-version-manager-removes-system-directories)
   * [2011: a space removes everything under /usr/](#2011-a-space-that-removes-everything-under-usr)
   * [2001: itunes installer deletes hard drivers](#2001-itunes-20-installer-deletes-hard-drives)
 
