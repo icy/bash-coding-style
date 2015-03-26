@@ -217,7 +217,7 @@ learn them; don't criticize.
 
 ### 2015: Restarting `squid-3.1` on a `RHEL` system removes all system files
 
-Reference:  https://bugzilla.redhat.com/show_bug.cgi?id=1202858.
+Reference: https://bugzilla.redhat.com/show_bug.cgi?id=1202858.
 
 See discussion on Hacker News:
   https://news.ycombinator.com/item?id=9254876.
@@ -225,6 +225,25 @@ See discussion on Hacker News:
 *Please note* that this is a bug catched by `QA` team, before
 the package is released; that's a luck catch.
 `RedHat` team should have fixed their `#bash` coding style.
+
+The problem may come form a patch https://bugzilla.redhat.com/show_bug.cgi?id=1102343
+that tries to clean up `squid`'s `PID` directory:
+
+    restart() {
+      stop
+      RETVAL=$?
+      if [ $RETVAL -eq 0 ] ; then
+        rm -rf $SQUID_PIDFILE_DIR/*
+        start
+      ...
+    }
+
+That is similar to this script
+  https://github.com/mozilla-services/squid-rpm/blob/47880414f17affdbb634b6f0a19a342995fb60f6/SOURCES/squid.init,
+whose copy is in `examples/squid.init`. Because `RedHat` doesn't publish
+their code, we can only _guess_ that they put `SQUID_PIDFILE_DIR` in some
+external configuration file (like `Debian` often uses `/etc/default/`),
+and for some `UNKNOWN` reason, `$SQUID_PIDFILE_DIR` is expanded to `empty`.
 
 ### 2015: `Steam` removes everything on system
 
