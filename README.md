@@ -137,7 +137,7 @@ That's not a good idea. Use the following code instead
 
 ## Pipe error handling
 
-Pipe stores its components's return codes in the `PIPESTATUS` array.
+Pipe stores its components' return codes in the `PIPESTATUS` array.
 This variable can be used only *ONCE* in the sub-`{shell,process}`
 followed the pipe. Be sure you catch it up!
 
