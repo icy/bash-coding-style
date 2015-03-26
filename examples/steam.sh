@@ -3,7 +3,6 @@
 cat 1>&2 <<-EOF
   This script is not to run on any system.
   Anh K. Huynh adds this banner to prevent script from being used.
-  It's here as an example of wrong use of $? in Bash.
 
   The original script is here
     https://github.com/indrora/steam_latest/blob/21cc14158c171f5912b04b83abf41205eb804b31/scripts/steam.sh
