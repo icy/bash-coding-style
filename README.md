@@ -271,6 +271,30 @@ Reference: https://github.com/tj/n/issues/86 .
 There are a lot of funny `.gif`s in this `github` issue.
 The code that causes the bug is here
   https://github.com/tj/n/pull/85/files.
+A copy of the file is found at `examples/n.sh`.
+
+The author assumes that `nodejs` is installed under `/usr/local/`.
+You will find this at the beginning of the script
+
+    VERSION="0.7.3"
+    N_PREFIX=${N_PREFIX-/usr/local}
+    VERSIONS_DIR=$N_PREFIX/n/versions
+
+There is nothing wrong with this, until they decide to remove everything
+under `$N_PREFIX`,
+
+    install_node() {
+      ....
+
+        # symlink everything, purge old copies or symlinks
+        for d in bin lib share include; do
+          rm -rf $N_PREFIX/$d
+          ln -s $dir/$d $N_PREFIX/$d
+      ...
+    }
+
+It's clear that `/usr/local/lib/` (and similar directory) may contain
+other system files.
 
 ### 2011: A space that removes everything under `/usr/`
 
