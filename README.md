@@ -341,3 +341,23 @@ This problem may (slightly) be avoided by using quoting, and listing.
 
 Reference:
   http://apple.slashdot.org/story/01/11/04/0412209/itunes-20-installer-deletes-hard-drives
+
+Anonymous quote: (http://apple.slashdot.org/comments.pl?sid=23365&cid=2518563)
+
+> In the installer is a small shell script to remove any old copies of iTunes.
+> It contained the following line of code:
+>
+>   rm -rf $2Applications/iTunes.app 2
+>
+> where "$2" is the name of the drive iTunes is being installed on.
+>
+> The problem is, since the pathname is not in quotes, if the drive name
+> has a space, and there are other drives named similarly then the installer
+> will delete the similarly named drive (for instance if your drives are:
+> "Disk", "Disk 1", and Disk 2" and you install on "Disk 1"
+> then the command will become "rm -rf Disk 1/Applications/iTunes.app 2
+>
+> The new updated version of the installer replaced that line of code with:
+>
+>   rm -rf "$2Applications/iTunes.app" 2
+>   so things should work fine now.
