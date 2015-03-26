@@ -251,6 +251,11 @@ The bad thing happens when `$STEAMROOT` is `/` (when you have `/steam.sh`)
 or just empty (when you execute `bash steam.sh`, `$0` is `steam.sh` and
 the `cd` command just fails, results in an empty `$STEAMROOT`.)
 
+Please note that using `set -u` doesn't help here. When `cd` command fails,
+`$STEAMROOT` is empty and `set -u` sees no error. It's a problem with
+working directory detection, and it's very very hard to do it right.
+So forget it; and don't delete anything :)
+
 ### 2012: `Backup Manager` kills a French company
 
 Reference: http://dragula.viettug.org/blogs/675.html.
