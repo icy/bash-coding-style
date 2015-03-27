@@ -56,6 +56,11 @@ Example
       | grep /bar/ \
       | awk '{print $NF}')"
 
+    _generate_long_lists \
+    | while read _line; do
+        _do_something_fun
+      done
+
 When using `display` form, put pipe symbol (`|`) at the beginning of
 of its statement. Never put `|` at the end of a line.
 
