@@ -182,7 +182,7 @@ value, don't trust it twice.
 
 Use `set -e` if your script is being used for your own business.
 
-Be careful when shipping `set -e` script to the world. It can simply
+Be **careful** when shipping `set -e` script to the world. It can simply
 break a lot of games. And sometimes you will shoot yourself in the foot.
 
 Let's see
@@ -196,6 +196,32 @@ Let's see
 
 If `_do_some_critical_check` fails, the script just exits and the following
 code is just skipped without any notice. Too bad, right?
+
+**Note (Mar 27, 2015):**
+
+It seems that some previous of `Bash` also exits
+if a logic expression, e.g, `/bad/command && echo Good`, fails. However,
+the current `Bash (4.3.33)` always continues
+
+    $ bash --version|grep ^GNU
+    GNU bash, version 4.3.33(1)-release (x86_64-unknown-linux-gnu)
+
+    $ set -e
+
+    $ /bad/command && echo Good
+    -bash: /bad/command: No such file or directory
+    $ echo $?
+    1
+
+    $ set +e
+
+    $ /bad/command && echo Good
+    -bash: /bad/command: No such file or directory
+    $ echo $?
+    127
+
+When `set -e`, the return code is `1` and `Bash` continues; this is not
+what I expected. When `set +e`, the return code is `127`.
 
 ## Catch up to $?
 
