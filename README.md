@@ -9,7 +9,7 @@
 * [Error handling](#error-handling)
 * [Pipe error handling](#pipe-error-handling)
 * [Automatic error handling](#automatic-error-handling)
-* [Catch up to $?](#catch-up-to-)
+* [Catch up with $?](#catch-up-with-)
 * [Good lessons](#good-lessons)
 
   * [2015: squid restarting removes system files](#2015-restarting-squid-31-on-a-rhel-system-removes-all-system-files)
@@ -205,7 +205,7 @@ code is just skipped without any notice. Too bad, right?
 For more details about `set -e`, please read
   http://mywiki.wooledge.org/BashFAQ/105/Answers.
 
-## Catch up to $?
+## Catch up with $?
 
 `$?` is used to get the return code of the *last statement*.
 To use it, please make sure you are not too late. The best way is to
