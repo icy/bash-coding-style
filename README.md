@@ -219,4 +219,4 @@ save the variable to a local variable. For example,
 
 ## Good lessons
 
-See also in `LESSIONS.md`.
+See also in `LESSONS.md`.
