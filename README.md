@@ -224,4 +224,4 @@ See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/R
 
 ## Resources
 
-* [Google - Shell Style Guide]: http://google-styleguide.googlecode.com/svn/trunk/shell.xml
+* [Google - Shell Style Guide](http://google-styleguide.googlecode.com/svn/trunk/shell.xml)
