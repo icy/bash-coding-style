@@ -220,7 +220,7 @@ save the variable to a local variable. For example,
 
 ## Good lessons
 
-See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/README.md).
+See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/LESSONS.md).
 
 ## Resources
 
