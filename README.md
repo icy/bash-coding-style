@@ -51,7 +51,7 @@ Example
       | awk '{print $NF}')"
 
     _generate_long_lists \
-    | while read _line; do
+    | while IFS= read -r  _line; do
         _do_something_fun
       done
 
@@ -148,7 +148,7 @@ This variable can be used only *ONCE* in the sub-`{shell,process}`
 followed the pipe. Be sure you catch it up!
 
     echo test | fail_command | something_else
-    local _ret_pipe=( ${PIPESTATUS[@]} )
+    local _ret_pipe=( "${PIPESTATUS[@]}" )
     # from here, `PIPESTATUS` is not available anymore
 
 When this `_ret_pipe` array contains something other than zero,
