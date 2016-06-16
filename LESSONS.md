@@ -13,7 +13,7 @@ learn them; don't criticize.
 
 ## 2015: Restarting `squid-3.1` on a `RHEL` system removes all system files
 
-*Lession*: Removing something is always dangerous.
+*Lesson*: Removing something is always dangerous.
 
 Reference: https://bugzilla.redhat.com/show_bug.cgi?id=1202858.
 
@@ -45,7 +45,7 @@ and for some `UNKNOWN` reason, `$SQUID_PIDFILE_DIR` is expanded to `empty`.
 
 ## 2015: `Steam` removes everything on system
 
-*Lession*: Removing something is always dangerous.
+*Lesson*: Removing something is always dangerous.
 
 Reference: https://github.com/ValveSoftware/steam-for-linux/issues/3671.
 
@@ -77,7 +77,7 @@ So forget it; and don't delete anything :)
 
 ## 2012: `Backup Manager` kills a French company
 
-*Lession*: Save `$?` as soon as possible.
+*Lesson*: Save `$?` as soon as possible.
 
 Reference: http://dragula.viettug.org/blogs/675.html.
 
@@ -92,7 +92,7 @@ on `Ubuntu 14.04-LTS`.
 
 ## 2012: `n`, a node version manager, removes system directories
 
-*Lession*: Removing something is always dangerous.
+*Lesson*: Removing something is always dangerous.
 
 Reference: https://github.com/tj/n/issues/86 .
 
@@ -126,7 +126,7 @@ other system files.
 
 ## 2011: A space that removes everything under `/usr/`
 
-*Lession*: Quoting is important. Quote what you think!
+*Lesson*: Quoting is important. Quote what you think!
 
 Reference:
   https://github.com/MrMEEE/bumblebee-Old-and-abbandoned/commit/6cd6b2485668e8a87485cb34ca8a0a937e73f16d
@@ -145,7 +145,7 @@ This problem may (slightly) be avoided by using quoting, and listing.
 
 ## 2001: iTunes 2.0 Installer Deletes Hard Drives
 
-*Lession*: Quoting is important. Quote what you think!
+*Lesson*: Quoting is important. Quote what you think!
 
 Reference:
   http://apple.slashdot.org/story/01/11/04/0412209/itunes-20-installer-deletes-hard-drives
