@@ -196,6 +196,20 @@ Let's see
 If `_do_some_critical_check` fails, the script just exits and the following
 code is just skipped without any notice. Too bad, right?
 
+Another example, in effect of `set -e`:
+
+    (false && true); echo not here
+
+print nothing, while:
+
+    { false && true; }; echo here
+
+print `here`.
+
+The result is varied with different shells or even different versions of the same shell.
+
+In general, don't rely on `set -e` and do proper error handling instead.
+
 For more details about `set -e`, please read
   http://mywiki.wooledge.org/BashFAQ/105/Answers.
 
