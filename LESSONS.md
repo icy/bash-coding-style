@@ -87,8 +87,13 @@ successfully. In 2012, a French company lost all their database backups,
 and that took down their internal tools in 1 month.
 
 You can see the line `189` from the files `examples/backup_methods.sh`
-for details. This file is shipped with `backup-manager` version `0.7.10.1-2`
-on `Ubuntu 14.04-LTS`.
+for details.
+
+*Update*:
+
+1. This file is shipped with `backup-manager` version `0.7.10.1-2`
+  on `Ubuntu 14.04-LTS`.
+1. The tool with the same version and bad script is shipped with `Ubuntu 16.04-LTS`.
 
 ## 2012: `n`, a node version manager, removes system directories
 
