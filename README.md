@@ -211,7 +211,9 @@ The result is varied with different shells or even different versions of the sam
 In general, don't rely on `set -e` and do proper error handling instead.
 
 For more details about `set -e`, please read
-  http://mywiki.wooledge.org/BashFAQ/105/Answers.
+
+* http://mywiki.wooledge.org/BashFAQ/105/Answers
+* [When Bash scripts bite](https://news.ycombinator.com/item?id=14321213)
 
 ## Catch up with $?
 
@@ -239,3 +241,4 @@ See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/L
 ## Resources
 
 * [Google - Shell Style Guide](http://google-styleguide.googlecode.com/svn/trunk/shell.xml)
+* [Defensive Bash programming](https://news.ycombinator.com/item?id=7815190)
