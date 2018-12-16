@@ -240,5 +240,5 @@ See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/L
 
 ## Resources
 
-* [Google - Shell Style Guide](http://google-styleguide.googlecode.com/svn/trunk/shell.xml)
+* [Google - Shell Style Guide](https://google.github.io/styleguide/shell.xml)
 * [Defensive Bash programming](https://news.ycombinator.com/item?id=7815190)
