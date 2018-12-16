@@ -10,6 +10,7 @@
 * [Pipe error handling](#pipe-error-handling)
 * [Automatic error handling](#automatic-error-handling)
 * [Catch up with $?](#catch-up-with-)
+* [Shell or Python/Ruby/etc](#shell-or-python-ruby-etc)
 * [Good lessons](#good-lessons)
 * [Resources](#resources)
 
@@ -238,7 +239,24 @@ save the variable to a local variable. For example,
 
 See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/LESSONS.md).
 
+## Shell or Python/Ruby/etc
+
+In many situations you may have to answer to yourself whether you have
+to use `Bash` and/or `Ruby/Python/Go/etc` for my task(s).
+
+One significant factor is that `Bash` doesn't have a good memory.
+That means if you have a bunch of data (in any format) you probably
+reload them every time you want to extract some portion from them.
+This really makes your script slow and buggy. When your script
+needs to interpret any kind of data, it's a good idea to move forward
+and rewrite the script in `Ruby/Python/Golang`.
+
+Anyway, probably you can't deny to ignore `Bash`:
+it's still very popular and many services are woken up by some shell things.
+Keep learning some basic things and you will never have to say sorry.
+
 ## Resources
 
 * [Google - Shell Style Guide](https://google.github.io/styleguide/shell.xml)
 * [Defensive Bash programming](https://news.ycombinator.com/item?id=7815190)
+* [Shellcheck](https://github.com/koalaman/shellcheck)
