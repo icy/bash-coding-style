@@ -242,7 +242,7 @@ See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/L
 ## Shell or Python/Ruby/etc
 
 In many situations you may have to answer to yourself whether you have
-to use `Bash` and/or `Ruby/Python/Go/etc` for my task(s).
+to use `Bash` and/or `Ruby/Python/Go/etc`.
 
 One significant factor is that `Bash` doesn't have a good memory.
 That means if you have a bunch of data (in any format) you probably
