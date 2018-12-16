@@ -10,7 +10,7 @@
 * [Pipe error handling](#pipe-error-handling)
 * [Automatic error handling](#automatic-error-handling)
 * [Catch up with $?](#catch-up-with-)
-* [Shell or Python/Ruby/etc](#shell-or-python-ruby-etc)
+* [Shell or Python/Ruby/etc](#shell-or-pythonrubyetc)
 * [Good lessons](#good-lessons)
 * [Resources](#resources)
 
