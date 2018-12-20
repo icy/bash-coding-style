@@ -223,7 +223,7 @@ For more details about `set -e`, please read
 
 ### No excuse
 
-When someone tells you to do something, you may bindly do as said,
+When someone tells you to do something, you may blindly do as said,
 or you would think twice then raise your white flag.
 
 Similarly, you should give your script a white flag. A backup script
