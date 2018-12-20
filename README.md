@@ -231,7 +231,7 @@ can't be executed on any workstation. A clean up job can't silently
 send `rm` commands in any directory. Critical mission script should
 
 * exit immediately without doing anything if argument list is empty;
-* exit if basic constraints are not etablished.
+* exit if basic constraints are not established.
 
 Keep this in mind. Always.
 
