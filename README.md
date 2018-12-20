@@ -9,6 +9,9 @@
 * [Error handling](#error-handling)
 * [Pipe error handling](#pipe-error-handling)
 * [Automatic error handling](#automatic-error-handling)
+  * [Set -u](#set--u)
+  * [Set -e](#set--e)
+  * [No excuse](#no-excuse)
 * [Catch up with $?](#catch-up-with-)
 * [Shell or Python/Ruby/etc](#shell-or-pythonrubyetc)
 * [Good lessons](#good-lessons)
@@ -18,13 +21,13 @@
 
 This is a set of `Bash` coding conventions and good pratices.
 
-The original Vietnamese version can be found here
-  http://theslinux.org/doc/bash/coding_style/.
-It is not up-to-date, though.
+## Authors. License
 
-## Author. License
+The original author is Anh K. Huynh and the original work was part of
+[`TheSLinux`](http://theslinux.org/doc/bash/coding_style/).
 
-The author is Anh K. Huynh.
+A few contributors have been helped to fix errors and improve the style.
+They are also the authors.
 
 The work is released under a MIT license.
 
@@ -91,6 +94,8 @@ Example
 
 Though `local` statement can declare multiple variables, that way
 makes your code unreadable. Put each `local` statement on its own line.
+
+`FIXME`: Add flexibility support.
 
 ## Function names
 
@@ -215,6 +220,20 @@ For more details about `set -e`, please read
 
 * http://mywiki.wooledge.org/BashFAQ/105/Answers
 * [When Bash scripts bite](https://news.ycombinator.com/item?id=14321213)
+
+### No excuse
+
+When someone tells you to do something, you may bindly do as said,
+or you would think twice then raise your white flag.
+
+Similarly, you should give your script a white flag. A backup script
+can't be executed on any workstation. A clean up job can't silently
+send `rm` commands in any directory. Critical mission script should
+
+* exit immediately without doing anything if argument list is empty;
+* exit if basic constraints are not etablished.
+
+Keep this in mind. Always.
 
 ## Catch up with $?
 
