@@ -19,7 +19,7 @@
 
 ## Description
 
-This is a set of `Bash` coding conventions and good pratices.
+This is a set of `Bash` coding conventions and good practices.
 
 ## Authors. License
 
