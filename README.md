@@ -5,14 +5,17 @@
 * [Variable names](#variable-names)
 * [Function names](#function-names)
 * [Error handling](#error-handling)
-* [Pipe error handling](#pipe-error-handling)
-* [Automatic error handling](#automatic-error-handling)
-  * [Set -u](#set--u)
-  * [Set -e](#set--e)
-  * [No excuse](#no-excuse)
-* [Catch up with $?](#catch-up-with-)
-* [Removing with care](#removing-with-care)
-* [Shell or Python/Ruby/etc](#shell-or-pythonrubyetc)
+  * [Sending instructions](#sending-instructions)
+  * [Pipe error handling](#pipe-error-handling)
+  * [Catch up with $?](#catch-up-with-)
+    * [Automatic error handling](#automatic-error-handling)
+    * [Set -u](#set--u)
+    * [Set -e](#set--e)
+    * [No excuse](#no-excuse)
+* [Techniques](#techniques)
+  * [Meta programming](#meta-programming)
+  * [Removing with care](#removing-with-care)
+  * [Shell or Python/Ruby/etc](#shell-or-pythonrubyetc)
 * [Good lessons](#good-lessons)
 * [Resources](#resources)
 * [Author. License](#author-license)
@@ -94,6 +97,8 @@ the ones should be used by other internal functions.
 
 ## Error handling
 
+### Sending instructions
+
 All errors should be sent to `STDERR`. Never send any error/warning message
 to a`STDOUT` device. Never use `echo` directly to print your message;
 use a wrapper instead (`warn`, `err`, `die`,...). For example,
@@ -136,7 +141,28 @@ That's not a good idea. Use the following code instead
       _foobar_call || return 1
     }
 
-## Pipe error handling
+### Catch up with $?
+
+`$?` is used to get the return code of the *last statement*.
+To use it, please make sure you are not too late. The best way is to
+save the variable to a local variable. For example,
+
+    _do_something_critical
+    local _ret="$?"
+    # from now, $? is zero, because the latest statement (assignment)
+    # (always) returns zero.
+
+    _do_something_terrible
+    echo "done"
+    if [[ $? -ge 1 ]]; then
+      # Bash will never reach here. Because "echo" has returned zero.
+    fi
+
+`$?` is very useful. But don't trust it.
+
+Please don't use `$?` with `set -e` ;)
+
+### Pipe error handling
 
 Pipe stores its components' return codes in the `PIPESTATUS` array.
 This variable can be used only *ONCE* in the sub-`{shell,process}`
@@ -225,7 +251,38 @@ send `rm` commands in any directory. Critical mission script should
 
 Keep this in mind. Always.
 
-## Removing with care
+## Techniques
+
+### Meta programming
+
+`Bash` has a very powerful feature that you may have known:
+It's very trivial to get definition of a defined method. For example,
+
+    my_func() {
+      echo "This is my function`"
+    }
+
+    echo "The definition of my_func"
+    declare -f my_func
+
+    # <snip>
+
+Why this is important? Your program manipulates them. It's up to your
+imagination.
+
+For example, send a local function to remote and excute them via `ssh`
+
+    {
+      declare -f my_func    # send function definition
+      echo "my_func"        # execution instruction
+    } \
+    | ssh some_server
+
+This will help your program and script readable especially when you
+have to send a lot of instructions via `ssh`. Please note `ssh` session
+will miss interactive input stream though.
+
+### Removing with care
 
 It's hard to remove files and directories **correctly**.
 Please consider to use `rm` with `backup` options. If you use some
@@ -236,32 +293,7 @@ variables in your `rm` arguments, you may want to make them immutable.
     # <snip>
     rm -fv "$_temporary_file"
 
-## Catch up with $?
-
-`$?` is used to get the return code of the *last statement*.
-To use it, please make sure you are not too late. The best way is to
-save the variable to a local variable. For example,
-
-    _do_something_critical
-    local _ret="$?"
-    # from now, $? is zero, because the latest statement (assignment)
-    # (always) returns zero.
-
-    _do_something_terrible
-    echo "done"
-    if [[ $? -ge 1 ]]; then
-      # Bash will never reach here. Because "echo" has returned zero.
-    fi
-
-`$?` is very useful. But don't trust it.
-
-Please don't use `$?` with `set -e` ;)
-
-## Good lessons
-
-See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/LESSONS.md).
-
-## Shell or Python/Ruby/etc
+### Shell or Python/Ruby/etc
 
 In many situations you may have to answer to yourself whether you have
 to use `Bash` and/or `Ruby/Python/Go/etc`.
@@ -276,6 +308,10 @@ and rewrite the script in another language, `Ruby/Python/Golang/...`.
 Anyway, probably you can't deny to ignore `Bash`:
 it's still very popular and many services are woken up by some shell things.
 Keep learning some basic things and you will never have to say sorry.
+
+## Good lessons
+
+See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/LESSONS.md).
 
 ## Resources
 
