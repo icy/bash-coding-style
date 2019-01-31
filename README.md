@@ -13,6 +13,7 @@
     * [Set -u](#set--u)
     * [Set -e](#set--e)
 * [Techniques](#techniques)
+  * [Quick self-doc](#quick-self-doc)
   * [No excuse](#no-excuse)
   * [Meta programming](#meta-programming)
   * [Removing with care](#removing-with-care)
@@ -241,6 +242,32 @@ For more details about `set -e`, please read
 * [When Bash scripts bite](https://news.ycombinator.com/item?id=14321213)
 
 ## Techniques
+
+### Quick self-doc
+
+It's possible to generate beautiful self documentation by using `grep`,
+as in the following example. You define a strict format and `grep` them:
+
+    _func_1() { #public: Some quick introduction
+      :
+    }
+
+    _func_2() { #public: Some other tasks
+      :
+    }
+
+    _quick_help() {
+      LANG=en_US.UTF_8
+      grep -E '^_.+ #public' "$0" \
+      | sed -e 's|() { #public: |☠|g' \
+      | column -s"☠" -t \
+      | sort
+    }
+
+When you execute `_quick_help`, the output is as below
+
+    _func_1    Some quick introduction
+    _func_2    Some other tasks
 
 ### No excuse
 
