@@ -247,8 +247,7 @@ For more details about `set -e`, please read
 ### Make your script a library
 
 First thing first: Use `function` if possible. Instead of writting
-some direct instructions in your script, you have a wrapper for them:
-
+some direct instructions in your script, you have a wrapper for them.
 This is not good
 
     : do something cool
