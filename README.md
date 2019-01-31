@@ -240,6 +240,8 @@ For more details about `set -e`, please read
 * http://mywiki.wooledge.org/BashFAQ/105/Answers
 * [When Bash scripts bite](https://news.ycombinator.com/item?id=14321213)
 
+## Techniques
+
 ### No excuse
 
 When someone tells you to do something, you may blindly do as said,
@@ -253,8 +255,6 @@ send `rm` commands in any directory. Critical mission script should
 * exit if basic constraints are not established.
 
 Keep this in mind. Always.
-
-## Techniques
 
 ### Meta programming
 
