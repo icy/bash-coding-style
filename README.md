@@ -1,9 +1,10 @@
 ## Some `Bash` coding conventions and good practices.
 
-* [Tabs and Spaces](#tabs-and-spaces)
-* [Pipe](#pipe)
-* [Variable names](#variable-names)
-* [Function names](#function-names)
+* [Naming and styles](#naming-and-styles)
+  * [Tabs and Spaces](#tabs-and-spaces)
+  * [Pipe](#pipe)
+  * [Variable names](#variable-names)
+  * [Function names](#function-names)
 * [Error handling](#error-handling)
   * [Sending instructions](#sending-instructions)
   * [Pipe error handling](#pipe-error-handling)
@@ -20,13 +21,15 @@
 * [Resources](#resources)
 * [Author. License](#author-license)
 
-## Tabs and Spaces
+## Naming and Styles
+
+### Tabs and Spaces
 
 Never use `(smart-)`tabs. Replace a tab by two spaces.
 
 Do not accept any trailing spaces.
 
-## Pipe
+### Pipe
 
 There are `inline` pipe and `display` pipe.  Unless your pipe is too
 short, please use `display` pipe to make things clear.
@@ -51,7 +54,7 @@ Example
 When using `display` form, put pipe symbol (`|`) at the beginning of
 of its statement. Never put `|` at the end of a line.
 
-## Variable names
+### Variable names
 
 A variable is named according to its scope.
 
@@ -86,7 +89,7 @@ makes your code unreadable. Put each `local` statement on its own line.
 
 `FIXME`: Add flexibility support.
 
-## Function names
+### Function names
 
 Name of internal functions should be started by an underscore (`_`).
 Use underscore (`_`) to glue verbs and nouns. Don't use camel form
