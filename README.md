@@ -267,7 +267,7 @@ It's very trivial to get definition of a defined method. For example,
 
     # <snip>
 
-Why this is important? Your program manipulates them. It's up to your
+Why is this important? Your program manipulates them. It's up to your
 imagination.
 
 For example, send a local function to remote and excute them via `ssh`
