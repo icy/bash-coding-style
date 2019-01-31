@@ -9,7 +9,7 @@
   * [Sending instructions](#sending-instructions)
   * [Pipe error handling](#pipe-error-handling)
   * [Catch up with $?](#catch-up-with-)
-    * [Automatic error handling](#automatic-error-handling)
+  * [Automatic error handling](#automatic-error-handling)
     * [Set -u](#set--u)
     * [Set -e](#set--e)
 * [Techniques](#techniques)
@@ -192,9 +192,9 @@ you should check if some pipe component has failed. For example,
       echo >&2 ":: Unable to do something"
     }
 
-## Automatic error handling
+### Automatic error handling
 
-### Set -u
+#### Set -u
 
 Always use `set -u` to make sure you won't use any undeclared variable.
 This saves you from a lot of headaches and critical bugs.
@@ -202,7 +202,7 @@ This saves you from a lot of headaches and critical bugs.
 Because `set -u` can't help when a variable is declared and set to empty
 value, don't trust it twice.
 
-### Set -e
+#### Set -e
 
 Use `set -e` if your script is being used for your own business.
 
