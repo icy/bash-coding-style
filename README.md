@@ -13,6 +13,7 @@
     * [Set -u](#set--u)
     * [Set -e](#set--e)
 * [Techniques](#techniques)
+  * [Make your script a library](#make-your-script-a-library)
   * [Quick self-doc](#quick-self-doc)
   * [No excuse](#no-excuse)
   * [Meta programming](#meta-programming)
@@ -242,6 +243,39 @@ For more details about `set -e`, please read
 * [When Bash scripts bite](https://news.ycombinator.com/item?id=14321213)
 
 ## Techniques
+
+### Make your script a library
+
+First thing first: Use `function` if possible. Instead of writting
+some direct instructions in your script, you have a wrapper for them:
+
+This is not good
+
+    : do something cool
+    : do something great
+
+Having them in a function is better
+
+    _default_tasks() {
+      : do something cool
+      : do something great
+    }
+
+Now in the very last lines of you script, you can execute them
+
+    case "${@:-}" in
+    ":")  echo "File included." ;;
+    "")   _default_tasks        ;;
+    esac
+
+From other script you can include the script easily wihtout executing
+any code:
+
+    # from other script
+    source "/path/to_the_previous_script.sh" ":"
+
+By advancing this simple technique, you have more options to debug
+your script and/or change your script behavior.
 
 ### Quick self-doc
 
