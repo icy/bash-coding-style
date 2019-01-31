@@ -1,7 +1,5 @@
-## Table of contents
+## Some `Bash` coding conventions and good practices.
 
-* [Description](#description)
-* [Author. License](#author-license)
 * [Tabs and Spaces](#tabs-and-spaces)
 * [Pipe](#pipe)
 * [Variable names](#variable-names)
@@ -13,23 +11,11 @@
   * [Set -e](#set--e)
   * [No excuse](#no-excuse)
 * [Catch up with $?](#catch-up-with-)
+* [Removing with care](#removing-with-care)
 * [Shell or Python/Ruby/etc](#shell-or-pythonrubyetc)
 * [Good lessons](#good-lessons)
 * [Resources](#resources)
-
-## Description
-
-This is a set of `Bash` coding conventions and good practices.
-
-## Authors. License
-
-The original author is Anh K. Huynh and the original work was part of
-[`TheSLinux`](http://theslinux.org/doc/bash/coding_style/).
-
-A few contributors have been helped to fix errors and improve the style.
-They are also the authors.
-
-The work is released under a MIT license.
+* [Author. License](#author-license)
 
 ## Tabs and Spaces
 
@@ -102,6 +88,9 @@ makes your code unreadable. Put each `local` statement on its own line.
 Name of internal functions should be started by an underscore (`_`).
 Use underscore (`_`) to glue verbs and nouns. Don't use camel form
 (`ThisIsBad`; use `this_is_not_bad` instead.)
+
+Use two underscores (`__`) to indicate some very internal methods aka
+the ones should be used by other internal functions.
 
 ## Error handling
 
@@ -189,6 +178,7 @@ Use `set -e` if your script is being used for your own business.
 
 Be **careful** when shipping `set -e` script to the world. It can simply
 break a lot of games. And sometimes you will shoot yourself in the foot.
+If possible please have an option for user choice.
 
 Let's see
 
@@ -235,6 +225,17 @@ send `rm` commands in any directory. Critical mission script should
 
 Keep this in mind. Always.
 
+## Removing with care
+
+It's hard to remove files and directories **correctly**.
+Please consider to use `rm` with `backup` options. If you use some
+variables in your `rm` arguments, you may want to make them immutable.
+
+    export _temporary_file=/path/to/some/file/
+    readonly _temporary_file
+    # <snip>
+    rm -fv "$_temporary_file"
+
 ## Catch up with $?
 
 `$?` is used to get the return code of the *last statement*.
@@ -254,6 +255,8 @@ save the variable to a local variable. For example,
 
 `$?` is very useful. But don't trust it.
 
+Please don't use `$?` with `set -e` ;)
+
 ## Good lessons
 
 See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/LESSONS.md).
@@ -268,7 +271,7 @@ That means if you have a bunch of data (in any format) you probably
 reload them every time you want to extract some portion from them.
 This really makes your script slow and buggy. When your script
 needs to interpret any kind of data, it's a good idea to move forward
-and rewrite the script in `Ruby/Python/Golang`.
+and rewrite the script in another language, `Ruby/Python/Golang/...`.
 
 Anyway, probably you can't deny to ignore `Bash`:
 it's still very popular and many services are woken up by some shell things.
@@ -279,3 +282,13 @@ Keep learning some basic things and you will never have to say sorry.
 * [Google - Shell Style Guide](https://google.github.io/styleguide/shell.xml)
 * [Defensive Bash programming](https://news.ycombinator.com/item?id=7815190)
 * [Shellcheck](https://github.com/koalaman/shellcheck)
+
+## Authors. License
+
+The original author is Anh K. Huynh and the original work was part of
+[`TheSLinux`](http://theslinux.org/doc/bash/coding_style/).
+
+A few contributors have been helped to fix errors and improve the style.
+They are also the authors.
+
+The work is released under a MIT license.
