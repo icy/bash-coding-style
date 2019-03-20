@@ -27,16 +27,13 @@
 
 ### Tabs and Spaces
 
-Never use `(smart-)`tabs. Replace a tab by two spaces.
-
+Don't use `(smart-)`tabs. Replace a tab by two spaces.
 Do not accept any trailing spaces.
 
 ### Pipe
 
 There are `inline` pipe and `display` pipe.  Unless your pipe is too
-short, please use `display` pipe to make things clear.
-
-Example
+short, please use `display` pipe to make things clear. For example,
 
     This is an inline pipe: "$(ls -la /foo/ | grep /bar/)"
 
@@ -267,11 +264,13 @@ Now in the very last lines of you script, you can execute them
     "")   _default_tasks        ;;
     esac
 
-From other script you can include the script easily wihtout executing
+From other script you can include the script easily without executing
 any code:
 
     # from other script
     source "/path/to_the_previous_script.sh" ":"
+
+(When being invoked without any argument the `_default_tasks` is called.)
 
 By advancing this simple technique, you have more options to debug
 your script and/or change your script behavior.
