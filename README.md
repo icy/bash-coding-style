@@ -92,7 +92,7 @@ makes your code unreadable. Put each `local` statement on its own line.
 
 Name of internal functions should be started by an underscore (`_`).
 Use underscore (`_`) to glue verbs and nouns. Don't use camel form
-(`ThisIsBad`; use `this_is_not_bad` instead.)
+(`ThisIsNotMyStyle`; use `this_is_my_style` instead.)
 
 Use two underscores (`__`) to indicate some very internal methods aka
 the ones should be used by other internal functions.
