@@ -214,21 +214,44 @@ Let's see
     _do_some_critical_check
 
     if [[ $? -ge 1 ]]; then
-      echo "Oh, you will never see this line"
+      echo "Oh, you will never see this line."
     fi
 
 If `_do_some_critical_check` fails, the script just exits and the following
-code is just skipped without any notice. Too bad, right?
+code is just skipped without any notice. Too bad, right? The code above
+can be refactored as below
+
+    set -e
+    if _do_some_critical_check; then
+      echo "Oh, it's better now"
+    fi
+    echo "Oh, you will always see this line."
+
+Now, if you expect to stop the script when `_do_some_critical_check` fails
+(it's the purpose of `set -e`, right?), these lines don't help. Why?
+Because `set -e` doesn't work when being used with `if`. Confused?
+Okay, these lines are the correct one
+
+    set -e
+    if _do_some_critical_check; then
+      echo "Oh, it's better now"
+    else
+      echo "Something wrong we have to stop here"
+      exit 1 # or return 1
+    fi
+
+`set -e` doesn't help to improve your code: it just forces you to work hard,
+doesn't it?
 
 Another example, in effect of `set -e`:
 
     (false && true); echo not here
 
-print nothing, while:
+prints nothing, while:
 
     { false && true; }; echo here
 
-print `here`.
+prints `here`.
 
 The result is varied with different shells or even different versions of the same shell.
 
