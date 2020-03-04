@@ -400,6 +400,7 @@ See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/L
 
 ## Resources
 
+* [Anybody can write a good bash with a little effort](https://blog.yossarian.net/2020/01/23/Anybody-can-write-good-bash-with-a-little-effort)
 * [Google - Shell Style Guide](https://google.github.io/styleguide/shell.xml)
 * [Defensive Bash programming](https://news.ycombinator.com/item?id=7815190)
 * [Shellcheck](https://github.com/koalaman/shellcheck)
