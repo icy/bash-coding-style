@@ -13,6 +13,7 @@
     * [Set -u](#set--u)
     * [Set -e](#set--e)
 * [Techniques](#techniques)
+  * [A little tracing](#a-little-tracing)
   * [Make your script a library](#make-your-script-a-library)
   * [Quick self-doc](#quick-self-doc)
   * [No excuse](#no-excuse)
@@ -263,6 +264,60 @@ For more details about `set -e`, please read
 * [When Bash scripts bite](https://news.ycombinator.com/item?id=14321213)
 
 ## Techniques
+
+### A little tracing
+
+It would be very helpful if you can show in your script logs some tracing
+information of the being-invoked function/method.
+
+`Bash` has two jiffy variables `LINENO` and `FUNCNAME` that can help.
+While it's easy to understand `LINENO`, `FUNCNAME` is a little complex.
+It is an array of `chained` functions. Let's look at the following example
+
+```
+funcA() {
+  log "This is A"
+}
+
+funcB() {
+  log "This is B"
+  funcA
+}
+
+funcC() {
+  log "This is C"
+  funcB
+}
+
+: Now, we call funcC
+
+funcC
+```
+
+In this example, we have a chain: `funcC -> funcB -> funcA`.
+Inside `funcA`, the runtime expands `FUNCNAME` to
+
+```
+FUNCNAME=(funcA funcB funcC)
+```
+
+The first item of the array is the method per-se, and the next one is
+the one who instructs `funcA`.
+
+So, how can this help? Let's define a powerful `log` function
+
+```
+log() {
+  echo "(LOGGING) ${FUNCNAME[1]:-unknown}: *"
+}
+```
+
+You can use this little `log` method everywhere, for example, when `funcB`
+is invoked, it will print
+
+```
+LOGGING funcB: This is B
+```
 
 ### Make your script a library
 
