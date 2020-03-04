@@ -301,8 +301,8 @@ Inside `funcA`, the runtime expands `FUNCNAME` to
 FUNCNAME=(funcA funcB funcC)
 ```
 
-The first item of the array is the method per-se, and the next one is
-the one who instructs `funcA`.
+The first item of the array is the method per-se (`funcA`),
+and the next one is the one who instructs `funcA` (it is `funcB`).
 
 So, how can this help? Let's define a powerful `log` function
 
