@@ -31,6 +31,7 @@ And it's also important to have a consistent way in your whole script.
   * [Removing with care](#removing-with-care)
   * [Shell or Python/Ruby/etc](#shell-or-pythonrubyetc)
 * [Contributions](#contributions)
+  * [Variable names for arrays](#variable-names-for-arrays)
 * [Good lessons](#good-lessons)
 * [Resources](#resources)
 * [Author. License](#author-license)
@@ -507,7 +508,7 @@ As there are two types of arrays, you may need to enforce a better name
 declare -A MAP_DEPLOYMENTS
 ```
 
-Well, it's just a reflection of some ;)
+Well, it's just a reflection of some idea from other language;)
 
 ## Good lessons
 
