@@ -1,5 +1,15 @@
 ## Some `Bash` coding conventions and good practices.
 
+Coding conventions are... just conventions.
+It helps to have a little fun with scripting,
+not to create new war/bias conversations.
+
+Feel free to break the rules at time you can; it's important
+that you will always love what you would have written down...,
+because scripts can be too fragile, too hard to maintain,
+or so many people hate them...
+And it's also important to have a consistent way in your whole script.
+
 * [Naming and styles](#naming-and-styles)
   * [Tabs and Spaces](#tabs-and-spaces)
   * [Pipe](#pipe)
@@ -14,12 +24,13 @@
     * [Set -e](#set--e)
 * [Techniques](#techniques)
   * [A little tracing](#a-little-tracing)
-  * [Make your script a library](#make-your-script-a-library)
+  * [Making your script a library](#making-your-script-a-library)
   * [Quick self-doc](#quick-self-doc)
   * [No excuse](#no-excuse)
   * [Meta programming](#meta-programming)
   * [Removing with care](#removing-with-care)
   * [Shell or Python/Ruby/etc](#shell-or-pythonrubyetc)
+* [Contributions](#contributions)
 * [Good lessons](#good-lessons)
 * [Resources](#resources)
 * [Author. License](#author-license)
@@ -30,6 +41,10 @@
 
 Don't use `(smart-)`tabs. Replace a tab by two spaces.
 Do not accept any trailing spaces.
+
+Many editors can't and/or aren't configured to display the differences
+between tabs and spaces. Another person editor is just not your editor.
+Having spaces does virtually help a strange reader of your script.
 
 ### Pipe
 
@@ -52,7 +67,8 @@ short, please use `display` pipe to make things clear. For example,
       done
 
 When using `display` form, put pipe symbol (`|`) at the beginning of
-of its statement. Never put `|` at the end of a line.
+of its statement. Don't put `|` at the end of a line, because it's the
+job of the line end (`EOL`) character and line continuation (`\`).
 
 ### Variable names
 
@@ -201,6 +217,21 @@ This saves you from a lot of headaches and critical bugs.
 Because `set -u` can't help when a variable is declared and set to empty
 value, don't trust it twice.
 
+It's recommended to emphasize the needs of your variables before your
+script actually starts. In the following example, the script just stops
+when `SOME_VARIABLE` or `OTHER_VARIABLE` is not defined; these checks
+are done just before any execution of the main routine is processed.
+
+```
+: a lot of method definitions
+
+set -u
+: "${SOME_VARIABLE}"
+: "${OTHER_VARIABLE}"
+
+: your main routine
+```
+
 #### Set -e
 
 Use `set -e` if your script is being used for your own business.
@@ -319,7 +350,7 @@ is invoked, it will print
 LOGGING funcB: This is B
 ```
 
-### Make your script a library
+### Making your script a library
 
 First thing first: Use `function` if possible. Instead of writting
 some direct instructions in your script, you have a wrapper for them.
@@ -448,6 +479,35 @@ and rewrite the script in another language, `Ruby/Python/Golang/...`.
 Anyway, probably you can't deny to ignore `Bash`:
 it's still very popular and many services are woken up by some shell things.
 Keep learning some basic things and you will never have to say sorry.
+Before thinking of switching to Python/Ruby/Golang, please consider
+to write better Bash scripts first ;)
+
+## Contributions
+
+### Variable names for arrays
+
+In #7, Cristofer Fuentes suggests to use special names for arrays.
+Personally I don't follow this way, because I always try to avoid
+to use Bash array (and/or associative arrays), and in Bash
+per-se there are quite a lot of confusion (e.g, `LINENO` is a string,
+`FUNCNAME` is array, `BASH_VERSION` is ... another array.)
+
+However, if your script has to use some array, it's also possible to
+have special name for them. E.g,
+
+```
+declare -A DEPLOYMENTS
+DEPLOYMENTS["the1st"]="foo"
+DEPLOYMENTS["the2nd"]="bar"
+```
+
+As there are two types of arrays, you may need to enforce a better name
+
+```
+declare -A MAP_DEPLOYMENTS
+```
+
+Well, it's just a reflection of some ;)
 
 ## Good lessons
 
