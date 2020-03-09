@@ -508,7 +508,7 @@ As there are two types of arrays, you may need to enforce a better name
 declare -A MAP_DEPLOYMENTS
 ```
 
-Well, it's just a reflection of some idea from other language;)
+Well, it's just a reflection of some idea from another language;)
 
 ## Good lessons
 
