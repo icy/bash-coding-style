@@ -4,11 +4,11 @@ Coding conventions are... just conventions.
 It helps to have a little fun with scripting,
 not to create new war/bias conversations.
 
-Feel free to break the rules at time you can; it's important
-that you will always love what you would have written down...,
+Feel free to break the rules any time you can; it's important
+that you will always love what you would have written
 because scripts can be too fragile, too hard to maintain,
 or so many people hate them...
-And it's also important to have a consistent way in your whole script.
+And it's also important to have a consistent way in your scripts.
 
 * [Naming and styles](#naming-and-styles)
   * [Tabs and Spaces](#tabs-and-spaces)
