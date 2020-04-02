@@ -86,7 +86,7 @@ Unfortunately, `$?` is used too late; hence the program always returns
 successfully. In 2012, a French company lost all their database backups,
 and that took down their internal tools in 1 month.
 
-You can see the line `189` from the files [`examples/backup_methods.sh`](examples/backup_methods.sh#L189)
+You can see the line `189` from the files [`examples/backup_methods.sh`](examples/backup_methods.sh#L180)
 for details.
 
 *Update*:
