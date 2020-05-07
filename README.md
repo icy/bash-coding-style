@@ -1,7 +1,7 @@
 ## Some `Bash` coding conventions and good practices.
 
 Coding conventions are... just conventions.
-It helps to have a little fun with scripting,
+They help to have a little fun with scripting,
 not to create new war/bias conversations.
 
 Feel free to break the rules any time you can; it's important
@@ -23,6 +23,7 @@ And it's also important to have a consistent way in your scripts.
     * [Set -u](#set--u)
     * [Set -e](#set--e)
 * [Techniques](#techniques)
+  * [Keep that in mind](#keep-that-in-mind)
   * [A little tracing](#a-little-tracing)
   * [Making your script a library](#making-your-script-a-library)
   * [Quick self-doc](#quick-self-doc)
@@ -296,6 +297,15 @@ For more details about `set -e`, please read
 * [When Bash scripts bite](https://news.ycombinator.com/item?id=14321213)
 
 ## Techniques
+
+### Keep that in mind
+
+There are lot of shell scripts that don't come with (unit)tests.
+It's just not very easy to write tests. Please keep that in mind:
+Writing shell scripts is more about dealing with runtime and side effects.
+
+It's very hard to refactor shell scripts.
+Be prepared, and don't hate bash/shell scripts too much ;)
 
 ### A little tracing
 
