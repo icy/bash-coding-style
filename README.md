@@ -154,7 +154,7 @@ That's not a good idea. Use the following code instead
       # do something
 
       if [[ $? -ge 1 ]]; then
-        _error "$FUNCNAME has some internal error"
+        _error "${FUNCNAME[0]} has some internal error"
       fi
     }
 
@@ -170,7 +170,7 @@ save the variable to a local variable. For example,
 
     _do_something_critical
     local _ret="$?"
-    # from now, $? is zero, because the latest statement (assignment)
+    # from now on, $? is zero, because the latest statement (assignment)
     # (always) returns zero.
 
     _do_something_terrible
@@ -222,7 +222,7 @@ value, don't trust it twice.
 It's recommended to emphasize the needs of your variables before your
 script actually starts. In the following example, the script just stops
 when `SOME_VARIABLE` or `OTHER_VARIABLE` is not defined; these checks
-are done just before any execution of the main routine is processed.
+are done just before any execution of the main routine(s).
 
 ```
 : a lot of method definitions
