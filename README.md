@@ -293,6 +293,8 @@ In general, don't rely on `set -e` and do proper error handling instead.
 
 For more details about `set -e`, please read
 
+> The correct answer to every exercise is actually "because set -e is crap". 
+
 * http://mywiki.wooledge.org/BashFAQ/105/Answers
 * [When Bash scripts bite](https://news.ycombinator.com/item?id=14321213)
 
