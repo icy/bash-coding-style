@@ -74,6 +74,21 @@ job of the line end (`EOL`) character and line continuation (`\`).
 
 ### Variable names
 
+If you are going to have meanful variable name, please use them
+for the right purpose. The variable name `_country_name` should
+not be used to indicate a city name or a person, should they?
+So this is bad
+
+```
+_countries="australia germany berlin"
+for _city in $_countries; do
+  echo "city or country is: $_city
+done
+```
+
+That's very bad example but that is to emphasize the idea.
+(FIXME: Add better examples)
+
 A variable is named according to its scope.
 
 * If a variable can be changed from its parent environment,
