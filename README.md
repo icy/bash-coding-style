@@ -1,4 +1,4 @@
-## Some `Bash` coding conventions and good practices.
+ ## Some `Bash` coding conventions and good practices.
 
 Coding conventions are... just conventions.
 They help to have a little fun with scripting,
@@ -53,24 +53,45 @@ Having spaces does virtually help a strange reader of your script.
 There are `inline` pipe and `display` pipe.  Unless your pipe is too
 short, please use `display` pipe to make things clear. For example,
 
-    This is an inline pipe: "$(ls -la /foo/ | grep /bar/)"
 
-    # The following pipe is of display form: every command is on
-    # its own line.
+```bash
+   
+# This is an inline pipe: "$(ls -la /foo/ | grep /bar/)"
 
-    _foobar="$( \
-      ls -la /foo/ \
-      | grep /bar/ \
-      | awk '{print $NF}')"
+# The following pipe is of display form: every command is on
+# its own line.
 
-    _generate_long_lists \
-    | while IFS= read -r  _line; do
-        _do_something_fun
-      done
+_foobar="$( \
+  ls -la /foo/ \
+  | grep /bar/ \
+  | awk '{print $NF}')"
+
+_generate_long_lists \
+| while IFS= read -r  _line; do
+    _do_something_fun
+  done
+```
 
 When using `display` form, put pipe symbol (`|`) at the beginning of
 of its statement. Don't put `|` at the end of a line, because it's the
 job of the line end (`EOL`) character and line continuation (`\`).
+
+Here is another example
+
+```bash
+
+# List all public images found in k8s manifest files
+# ignore some in-house image. 
+list_public_images() {
+  find . -type f -iname "*.yaml" -exec grep 'image: ' {} \; \
+  | grep -v ecr. \
+  | grep -v '#' \
+  | sed -e "s#['\"]##g" \
+  | awk '{print $NF}' \
+  | sort -u \
+  | grep -Eve '^(coredns|bflux|kube-proxy|logstash)$' \
+}
+```
 
 ### Variable names
 
@@ -79,7 +100,8 @@ for the right purpose. The variable name `_country_name` should
 not be used to indicate a city name or a person, should they?
 So this is bad
 
-```
+```bash
+
 _countries="australia germany berlin"
 for _city in $_countries; do
   echo "city or country is: $_city
@@ -104,18 +126,21 @@ A variable is named according to its scope.
 
 Example
 
-    # The following variable can be provided by user at run time.
-    D_ROOT="${D_ROOT:-}"
+```bash
 
-    # All variables inside `_my_def` are declared with `local` statement.
-    _my_def() {
-      local _d_tmp="/tmp/"
-      local _f_a=
-      local _f_b=
+# The following variable can be provided by user at run time.
+D_ROOT="${D_ROOT:-}"
 
-      # This is good, but it's quite a mess
-      local _f_x= _f_y=
-    }
+# All variables inside `_my_def` are declared with `local` statement.
+_my_def() {
+  local _d_tmp="/tmp/"
+  local _f_a=
+  local _f_b=
+
+  # This is good, but it's quite a mess
+  local _f_x= _f_y=
+}
+```
 
 Though `local` statement can declare multiple variables, that way
 makes your code unreadable. Put each `local` statement on its own line.
@@ -139,43 +164,52 @@ All errors should be sent to `STDERR`. Never send any error/warning message
 to a`STDOUT` device. Never use `echo` directly to print your message;
 use a wrapper instead (`warn`, `err`, `die`,...). For example,
 
-    _warn() {
-      echo >&2 ":: $*"
-    }
+```bash
 
-    _die() {
-      echo >&2 ":: $*"
-      exit 1
-    }
+_warn() {
+  echo >&2 ":: $*"
+}
+
+_die() {
+  echo >&2 ":: $*"
+  exit 1
+}
+```
 
 Do not handle error of another function. Each function should handle
 error and/or error message by their own implementation, inside its own
 definition.
 
-    _my_def() {
-      _foobar_call
+```bash
 
-      if [[ $? -ge 1 ]]; then
-        echo >&2 "_foobar_call has some error"
-        _error "_foobar_call has some error"
-        return 1
-      fi
-    }
+_my_def() {
+  _foobar_call
+
+  if [[ $? -ge 1 ]]; then
+    echo >&2 "_foobar_call has some error"
+    _error "_foobar_call has some error"
+    return 1
+  fi
+}
+```
 
 In the above example, `_my_def` is trying to handle error for `_foobar_call`.
 That's not a good idea. Use the following code instead
 
-    _foobar_call() {
-      # do something
+```bash
 
-      if [[ $? -ge 1 ]]; then
-        _error "${FUNCNAME[0]} has some internal error"
-      fi
-    }
+_foobar_call() {
+  # do something
 
-    _my_def() {
-      _foobar_call || return 1
-    }
+  if [[ $? -ge 1 ]]; then
+    _error "${FUNCNAME[0]} has some internal error"
+  fi
+}
+
+_my_def() {
+  _foobar_call || return 1
+}
+```
 
 ### Catch up with $?
 
@@ -183,16 +217,19 @@ That's not a good idea. Use the following code instead
 To use it, please make sure you are not too late. The best way is to
 save the variable to a local variable. For example,
 
-    _do_something_critical
-    local _ret="$?"
-    # from now on, $? is zero, because the latest statement (assignment)
-    # (always) returns zero.
+```bash
 
-    _do_something_terrible
-    echo "done"
-    if [[ $? -ge 1 ]]; then
-      # Bash will never reach here. Because "echo" has returned zero.
-    fi
+_do_something_critical
+local _ret="$?"
+# from now on, $? is zero, because the latest statement (assignment)
+# (always) returns zero.
+
+_do_something_terrible
+echo "done"
+if [[ $? -ge 1 ]]; then
+  # Bash will never reach here. Because "echo" has returned zero.
+fi
+```
 
 `$?` is very useful. But don't trust it.
 
@@ -204,25 +241,31 @@ Pipe stores its components' return codes in the `PIPESTATUS` array.
 This variable can be used only *ONCE* in the sub-`{shell,process}`
 followed the pipe. Be sure you catch it up!
 
-    echo test | fail_command | something_else
-    local _ret_pipe=( "${PIPESTATUS[@]}" )
-    # from here, `PIPESTATUS` is not available anymore
+```bash
+
+  echo test | fail_command | something_else
+  local _ret_pipe=( "${PIPESTATUS[@]}" )
+  # from here, `PIPESTATUS` is not available anymore
+```
 
 When this `_ret_pipe` array contains something other than zero,
 you should check if some pipe component has failed. For example,
 
-    # Note:
-    #   This function only works when it is invoked
-    #   immediately after a pipe statement.
-    _is_good_pipe() {
-      echo "${PIPESTATUS[@]}" | grep -qE "^[0 ]+$"
-    }
+```bash
 
-    _do_something | _do_something_else | _do_anything
-    _is_good_pipe \
-    || {
-      echo >&2 ":: Unable to do something"
-    }
+# Note:
+#   This function only works when it is invoked
+#   immediately after a pipe statement.
+_is_good_pipe() {
+  echo "${PIPESTATUS[@]}" | grep -qE "^[0 ]+$"
+}
+
+_do_something | _do_something_else | _do_anything
+_is_good_pipe \
+|| {
+  echo >&2 ":: Unable to do something"
+}
+```
 
 ### Automatic error handling
 
@@ -239,7 +282,8 @@ script actually starts. In the following example, the script just stops
 when `SOME_VARIABLE` or `OTHER_VARIABLE` is not defined; these checks
 are done just before any execution of the main routine(s).
 
-```
+```bash
+
 : a lot of method definitions
 
 set -u
@@ -259,46 +303,61 @@ If possible please have an option for user choice.
 
 Let's see
 
-    set -e
-    _do_some_critical_check
+```bash
 
-    if [[ $? -ge 1 ]]; then
-      echo "Oh, you will never see this line."
-    fi
+set -e
+_do_some_critical_check
+
+if [[ $? -ge 1 ]]; then
+  echo "Oh, you will never see this line."
+fi
+```
 
 If `_do_some_critical_check` fails, the script just exits and the following
 code is just skipped without any notice. Too bad, right? The code above
 can be refactored as below
 
-    set -e
-    if _do_some_critical_check; then
-      echo "Oh, it's better now"
-    fi
-    echo "Oh, you will always see this line."
+```bash
+
+set -e
+if _do_some_critical_check; then
+  echo "Oh, it's better now"
+fi
+echo "Oh, you will always see this line."
+```
 
 Now, if you expect to stop the script when `_do_some_critical_check` fails
 (it's the purpose of `set -e`, right?), these lines don't help. Why?
 Because `set -e` doesn't work when being used with `if`. Confused?
 Okay, these lines are the correct one
 
-    set -e
-    if _do_some_critical_check; then
-      echo "Oh, it's better now"
-    else
-      echo "Something wrong we have to stop here"
-      exit 1 # or return 1
-    fi
+```bash
+
+set -e
+if _do_some_critical_check; then
+  echo "Oh, it's better now"
+else
+  echo "Something wrong we have to stop here"
+  exit 1 # or return 1
+fi
+```
 
 `set -e` doesn't help to improve your code: it just forces you to work hard,
 doesn't it?
 
 Another example, in effect of `set -e`:
 
-    (false && true); echo not here
+```bash
+
+(false && true); echo not here
+```
 
 prints nothing, while:
 
+```bash
+
     { false && true; }; echo here
+```
 
 prints `here`.
 
@@ -333,7 +392,8 @@ information of the being-invoked function/method.
 While it's easy to understand `LINENO`, `FUNCNAME` is a little complex.
 It is an array of `chained` functions. Let's look at the following example
 
-```
+```bash
+
 funcA() {
   log "This is A"
 }
@@ -356,7 +416,8 @@ funcC
 In this example, we have a chain: `funcC -> funcB -> funcA`.
 Inside `funcA`, the runtime expands `FUNCNAME` to
 
-```
+```bash
+
 FUNCNAME=(funcA funcB funcC)
 ```
 
@@ -365,7 +426,8 @@ and the next one is the one who instructs `funcA` (it is `funcB`).
 
 So, how can this help? Let's define a powerful `log` function
 
-```
+```bash
+
 log() {
   echo "(LOGGING) ${FUNCNAME[1]:-unknown}: *"
 }
@@ -374,7 +436,8 @@ log() {
 You can use this little `log` method everywhere, for example, when `funcB`
 is invoked, it will print
 
-```
+```bash
+
 LOGGING funcB: This is B
 ```
 
@@ -384,28 +447,40 @@ First thing first: Use `function` if possible. Instead of writting
 some direct instructions in your script, you have a wrapper for them.
 This is not good
 
-    : do something cool
-    : do something great
+```bash
+
+: do something cool
+: do something great
+```
 
 Having them in a function is better
 
-    _default_tasks() {
-      : do something cool
-      : do something great
-    }
+```bash
+
+_default_tasks() {
+  : do something cool
+  : do something great
+}
+```
 
 Now in the very last lines of you script, you can execute them
 
-    case "${@:-}" in
-    ":")  echo "File included." ;;
-    "")   _default_tasks        ;;
-    esac
+```bash
+
+case "${@:-}" in
+":")  echo "File included." ;;
+"")   _default_tasks        ;;
+esac
+```
 
 From other script you can include the script easily without executing
 any code:
 
-    # from other script
-    source "/path/to_the_previous_script.sh" ":"
+```bash
+
+# from other script
+source "/path/to_the_previous_script.sh" ":"
+```
 
 (When being invoked without any argument the `_default_tasks` is called.)
 
@@ -417,26 +492,32 @@ your script and/or change your script behavior.
 It's possible to generate beautiful self documentation by using `grep`,
 as in the following example. You define a strict format and `grep` them:
 
-    _func_1() { #public: Some quick introduction
-      :
-    }
+```bash
 
-    _func_2() { #public: Some other tasks
-      :
-    }
+_func_1() { #public: Some quick introduction
+  :
+}
 
-    _quick_help() {
-      LANG=en_US.UTF_8
-      grep -E '^_.+ #public' "$0" \
-      | sed -e 's|() { #public: |☠|g' \
-      | column -s"☠" -t \
-      | sort
-    }
+_func_2() { #public: Some other tasks
+  :
+}
+
+_quick_help() {
+  LANG=en_US.UTF_8
+  grep -E '^_.+ #public' "$0" \
+  | sed -e 's|() { #public: |☠|g' \
+  | column -s"☠" -t \
+  | sort
+}
+```
 
 When you execute `_quick_help`, the output is as below
 
-    _func_1    Some quick introduction
-    _func_2    Some other tasks
+```bash
+
+_func_1    Some quick introduction
+_func_2    Some other tasks
+```
 
 ### No excuse
 
@@ -457,25 +538,31 @@ Keep this in mind. Always.
 `Bash` has a very powerful feature that you may have known:
 It's very trivial to get definition of a defined method. For example,
 
-    my_func() {
-      echo "This is my function`"
-    }
+```bash
 
-    echo "The definition of my_func"
-    declare -f my_func
+my_func() {
+  echo "This is my function`"
+}
 
-    # <snip>
+echo "The definition of my_func"
+declare -f my_func
+
+# <snip>
+```
 
 Why is this important? Your program manipulates them. It's up to your
 imagination.
 
 For example, send a local function to remote and excute them via `ssh`
 
-    {
-      declare -f my_func    # send function definition
-      echo "my_func"        # execution instruction
-    } \
-    | ssh some_server
+```bash
+
+{
+  declare -f my_func    # send function definition
+  echo "my_func"        # execution instruction
+} \
+| ssh some_server
+```
 
 This will help your program and script readable especially when you
 have to send a lot of instructions via `ssh`. Please note `ssh` session
@@ -487,10 +574,13 @@ It's hard to remove files and directories **correctly**.
 Please consider to use `rm` with `backup` options. If you use some
 variables in your `rm` arguments, you may want to make them immutable.
 
-    export _temporary_file=/path/to/some/file/
-    readonly _temporary_file
-    # <snip>
-    rm -fv "$_temporary_file"
+```bash
+
+export _temporary_file=/path/to/some/file/
+readonly _temporary_file
+# <snip>
+rm -fv "$_temporary_file"
+```
 
 ### Shell or Python/Ruby/etc
 
@@ -523,7 +613,8 @@ per-se there are quite a lot of confusion (e.g, `LINENO` is a string,
 However, if your script has to use some array, it's also possible to
 have special name for them. E.g,
 
-```
+```bash
+
 declare -A DEPLOYMENTS
 DEPLOYMENTS["the1st"]="foo"
 DEPLOYMENTS["the2nd"]="bar"
@@ -531,7 +622,8 @@ DEPLOYMENTS["the2nd"]="bar"
 
 As there are two types of arrays, you may need to enforce a better name
 
-```
+```bash
+
 declare -A MAP_DEPLOYMENTS
 ```
 
