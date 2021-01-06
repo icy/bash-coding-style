@@ -321,9 +321,9 @@ can be refactored as below
 
 set +e
 if _do_some_critical_check; then
-  echo "Oh, it's better now"
+  echo "Something has gone very well."
 fi
-echo "Oh, you will always see this line."
+echo "You will see this line."
 ```
 
 Now, if you expect to stop the script when `_do_some_critical_check` fails
@@ -333,9 +333,9 @@ Okay, these lines are the correct one
 
 ```bash
 
-set -e
+set +e
 if _do_some_critical_check; then
-  echo "Oh, it's better now"
+  echo "All check passed."
 else
   echo "Something wrong we have to stop here"
   exit 1 # or return 1
