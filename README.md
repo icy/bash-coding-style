@@ -319,7 +319,7 @@ can be refactored as below
 
 ```bash
 
-set -e
+set +e
 if _do_some_critical_check; then
   echo "Oh, it's better now"
 fi
