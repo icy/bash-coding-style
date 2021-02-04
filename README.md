@@ -1,4 +1,4 @@
- ## Some `Bash` coding conventions and good practices.
+## Some `Bash` coding conventions and good practices.
 
 Coding conventions are... just conventions.
 They help to have a little fun with scripting,
