@@ -215,7 +215,7 @@ _my_def() {
 
 `$?` is used to get the return code of the *last statement*.
 To use it, please make sure you are not too late. The best way is to
-save the variable to a local variable. For example,
+save the last return code thanks to some local variable. For example,
 
 ```bash
 
