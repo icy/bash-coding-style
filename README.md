@@ -643,6 +643,12 @@ followed the deprecated convention. Here is an simple `grep` command:
 
 ```
 $ grep -RhEoe '(\$_\w+)|(\$\{_[^}]+\})' . | sort -u
+
+  # -R    find in all files in the current directory
+  # -h    don't show file name in the command output
+  # -E    enable regular expression
+  # -o    only print variable name that matches our pattern
+  # -e    to specify the pattern (as seen above)
 ```
 
 ## Resources
