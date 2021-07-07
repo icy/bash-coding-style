@@ -11,6 +11,7 @@ or so many people hate them...
 And it's also important to have a consistent way in your scripts.
 
 * [Deprecated conventions](#deprecation)
+  * [`variable name started with an underscore` (`_foo_bar`)](#variable-name-started-with-an-underscore-_foo_bar)
 * [Naming and styles](#naming-and-styles)
   * [Tabs and Spaces](#tabs-and-spaces)
   * [Pipe](#pipe)
