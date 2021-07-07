@@ -643,7 +643,6 @@ followed the deprecated convention. Here is an simple `grep` command:
 
 ```
 $ grep -RhEoe '(\$_\w+)|(\$\{_[^}]+\})' . | sort -u
-
 ```
 
 ## Resources
