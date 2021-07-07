@@ -10,6 +10,8 @@ because scripts can be too fragile, too hard to maintain,
 or so many people hate them...
 And it's also important to have a consistent way in your scripts.
 
+* [Deprecated conventions](#deprecation)
+  * [`variable name started with an underscore` (`_foo_bar`)](#variable-name-started-with-an-underscore-_foo_bar)
 * [Naming and styles](#naming-and-styles)
   * [Tabs and Spaces](#tabs-and-spaces)
   * [Pipe](#pipe)
@@ -55,19 +57,19 @@ short, please use `display` pipe to make things clear. For example,
 
 
 ```bash
-   
-# This is an inline pipe: "$(ls -la /foo/ | grep /bar/)"
 
-# The following pipe is of display form: every command is on
-# its own line.
+ # This is an inline pipe: "$(ls -la /foo/ | grep /bar/)"
 
-_foobar="$( \
+ # The following pipe is of display form: every command is on
+ # its own line.
+
+foobar="$( \
   ls -la /foo/ \
   | grep /bar/ \
   | awk '{print $NF}')"
 
 _generate_long_lists \
-| while IFS= read -r  _line; do
+| while IFS= read -r  line; do
     _do_something_fun
   done
 ```
@@ -80,8 +82,8 @@ Here is another example
 
 ```bash
 
-# List all public images found in k8s manifest files
-# ignore some in-house image. 
+ # List all public images found in k8s manifest files
+ # ignore some in-house image.
 list_public_images() {
   find . -type f -iname "*.yaml" -exec grep 'image: ' {} \; \
   | grep -v ecr. \
@@ -96,15 +98,15 @@ list_public_images() {
 ### Variable names
 
 If you are going to have meanful variable name, please use them
-for the right purpose. The variable name `_country_name` should
+for the right purpose. The variable name `country_name` should
 not be used to indicate a city name or a person, should they?
 So this is bad
 
 ```bash
 
-_countries="australia germany berlin"
-for _city in $_countries; do
-  echo "city or country is: $_city
+countries="australia germany berlin"
+for city in $countries; do
+  echo "city or country is: $city
 done
 ```
 
@@ -115,12 +117,7 @@ A variable is named according to its scope.
 
 * If a variable can be changed from its parent environment,
   it should be in uppercase; e.g, `THIS_IS_A_USER_VARIABLE`.
-* Other variables are in lowercase, started by an underscore;
-  e.g, `_this_is_a_variable`. The primary purpose of the underscore (`_`)
-  is to create a natural distance between the dollar (`$`)
-  and the name when the variable is used (e.g, `$_this_is_a_variable`).
-  This makes your code more readable, esp. when there isn't color support
-  on your source code viewer.
+* Other variables are in lowercase
 * Any local variables inside a function definition should be
   declared with a `local` statement.
 
@@ -128,17 +125,17 @@ Example
 
 ```bash
 
-# The following variable can be provided by user at run time.
+ # The following variable can be provided by user at run time.
 D_ROOT="${D_ROOT:-}"
 
-# All variables inside `_my_def` are declared with `local` statement.
-_my_def() {
-  local _d_tmp="/tmp/"
-  local _f_a=
-  local _f_b=
+ # All variables inside `my_def` are declared with `local` statement.
+my_def() {
+  local d_tmp="/tmp/"
+  local f_a=
+  local f_b=
 
   # This is good, but it's quite a mess
-  local _f_x= _f_y=
+  local f_x= f_y=
 }
 ```
 
@@ -221,8 +218,9 @@ save the last return code thanks to some local variable. For example,
 
 _do_something_critical
 local _ret="$?"
-# from now on, $? is zero, because the latest statement (assignment)
-# (always) returns zero.
+
+ # from now on, $? is zero, because the latest statement (assignment)
+ # (always) returns zero.
 
 _do_something_terrible
 echo "done"
@@ -253,9 +251,9 @@ you should check if some pipe component has failed. For example,
 
 ```bash
 
-# Note:
-#   This function only works when it is invoked
-#   immediately after a pipe statement.
+ # Note:
+ #   This function only works when it is invoked
+ #   immediately after a pipe statement.
 _is_good_pipe() {
   echo "${PIPESTATUS[@]}" | grep -qE "^[0 ]+$"
 }
@@ -287,6 +285,7 @@ are done just before any execution of the main routine(s).
 : a lot of method definitions
 
 set -u
+
 : "${SOME_VARIABLE}"
 : "${OTHER_VARIABLE}"
 
@@ -367,7 +366,7 @@ In general, don't rely on `set -e` and do proper error handling instead.
 
 For more details about `set -e`, please read
 
-> The correct answer to every exercise is actually "because set -e is crap". 
+> The correct answer to every exercise is actually "because set -e is crap".
 
 * http://mywiki.wooledge.org/BashFAQ/105/Answers
 * [When Bash scripts bite](https://news.ycombinator.com/item?id=14321213)
@@ -478,7 +477,7 @@ any code:
 
 ```bash
 
-# from other script
+ # from other script
 source "/path/to_the_previous_script.sh" ":"
 ```
 
@@ -547,7 +546,7 @@ my_func() {
 echo "The definition of my_func"
 declare -f my_func
 
-# <snip>
+ # <snip>
 ```
 
 Why is this important? Your program manipulates them. It's up to your
@@ -576,10 +575,10 @@ variables in your `rm` arguments, you may want to make them immutable.
 
 ```bash
 
-export _temporary_file=/path/to/some/file/
-readonly _temporary_file
-# <snip>
-rm -fv "$_temporary_file"
+export temporary_file=/path/to/some/file/
+readonly temporary_file
+ # <snip>
+rm -fv "$temporary_file"
 ```
 
 ### Shell or Python/Ruby/etc
@@ -632,6 +631,25 @@ Well, it's just a reflection of some idea from another language;)
 ## Good lessons
 
 See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/LESSONS.md).
+
+## Deprecation
+
+### `variable name started with an underscore` (`_foo_bar`)
+
+Deprecated on July 7th 2021 (cf.: https://github.com/icy/bash-coding-style/issues/10).
+
+To migrate existing code, you may need to list all variables that
+followed the deprecated convention. Here is an simple `grep` command:
+
+```
+$ grep -RhEoe '(\$_\w+)|(\$\{_[^}]+\})' . | sort -u
+
+  # -R    find in all files in the current directory
+  # -h    don't show file name in the command output
+  # -E    enable regular expression
+  # -o    only print variable name that matches our pattern
+  # -e    to specify the pattern (as seen above)
+```
 
 ## Resources
 
