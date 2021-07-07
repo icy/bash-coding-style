@@ -639,7 +639,7 @@ See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/L
 Deprecated on July 7th 2021 (cf.: https://github.com/icy/bash-coding-style/issues/10).
 
 To migrate existing code, you may need to list all variables that
-followed the deprecated convention. Here is an example `grep` command:
+followed the deprecated convention. Here is an simple `grep` command:
 
 ```
 $ grep -RhEoe '(\$_\w+)|(\$\{_[^}]+\})' . | sort -u
