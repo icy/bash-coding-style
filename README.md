@@ -633,8 +633,17 @@ See also in `LESSONS.md` (https://github.com/icy/bash-coding-style/blob/master/L
 
 ## Deprecation
 
-* `variable name started with an underscore` (`_foo_bar`):
-  Deprecated on July 7th 2021 (cf.: https://github.com/icy/bash-coding-style/issues/10)
+### `variable name started with an underscore` (`_foo_bar`)
+
+Deprecated on July 7th 2021 (cf.: https://github.com/icy/bash-coding-style/issues/10).
+
+To migrate existing code, you may need to list all variables that
+followed the deprecated convention. Here is an example `grep` command:
+
+```
+$ grep -RhEoe '(\$_\w+)|(\$\{_[^}]+\})' . | sort -u
+
+```
 
 ## Resources
 
