@@ -657,7 +657,7 @@ $ grep -RhEoe '(\$_\w+)|(\$\{_[^}]+\})' . | sort -u
 * [Google - Shell Style Guide](https://github.com/google/styleguide/blob/gh-pages/shellguide.md)
 * [Defensive Bash programming](https://news.ycombinator.com/item?id=7815190)
 * [Shellcheck](https://github.com/koalaman/shellcheck)
-* [What exactly was the point of [ “x$var” = “xval” ]?](https://www.vidarholen.net/contents/blog/?p=1035)
+* [What exactly was the point of [ “x$var” = “xval” ]?](https://www.vidarholen.net/contents/blog/?p=1035) TLDR; You needed the trick during the mid-to-late 1990s and some times before 2010. Now you can forget that trick.
 
 ## Authors. License
 
