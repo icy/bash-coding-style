@@ -658,6 +658,8 @@ $ grep -RhEoe '(\$_\w+)|(\$\{_[^}]+\})' . | sort -u
 * [Defensive Bash programming](https://news.ycombinator.com/item?id=7815190)
 * [Shellcheck](https://github.com/koalaman/shellcheck)
 * [What exactly was the point of [ “x$var” = “xval” ]?](https://www.vidarholen.net/contents/blog/?p=1035) TLDR; You needed the trick during the mid-to-late 1990s and some times before 2010. Now you can forget that trick.
+* [Don't copy paste from a website to a terminal (thejh.net)](http://thejh.net/misc/website-terminal-copy-paste): https://news.ycombinator.com/item?id=10554679
+* [Homebrew installation "isssue"](https://github.com/withfig/fig/discussions/300): https://news.ycombinator.com/item?id=27901496
 
 ## Authors. License
 
