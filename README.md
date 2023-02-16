@@ -52,7 +52,7 @@ Having spaces does virtually help a strange reader of your script.
 
 ### Pipe
 
-There are `inline` pipe and `display` pipe.  Unless your pipe is too
+There are `inline` pipe and `display` pipe.  Unless your pipe is 
 short, please use `display` pipe to make things clear. For example,
 
 
