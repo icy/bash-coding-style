@@ -47,7 +47,7 @@ Don't use `(smart-)`tabs. Replace a tab by two spaces.
 Do not accept any trailing spaces.
 
 Many editors can't and/or aren't configured to display the differences
-between tabs and spaces. Another person editor is just not your editor.
+between tabs and spaces. Another person's editor is just not your editor.
 Having spaces does virtually help a strange reader of your script.
 
 ### Pipe
